@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Solutions — Hawk Cybersecurity</title>
+    <meta name="description"
+        content="Compliance & Experience, Technology & Tools, and Secure SDLC solutions from Hawk Cybersecurity.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+                    colors: {
+                        hawk: {
+                            50: '#EFF6FF',
+                            100: '#DBEAFE',
+                            200: '#BFDBFE',
+                            300: '#93C5FD',
+                            400: '#60A5FA',
+                            500: '#3B82F6',   /* Primary blue accent */
+                            600: '#2563EB',
+                            700: '#1D4ED8',
+                            800: '#1E40AF',
+                            900: '#1E3A8A'
+                        },
+                        ink: '#181A1B',     /* panels and cards */
+                        slate: '#0B0C0E',   /* main background */
+                    },
+                    boxShadow: { glow: '0 0 40px rgba(59,130,246,.15)' }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0B0C0E;
+            color: #F3F4F6;
+        }
+
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(255, 255, 255, .04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .04) 1px, transparent 1px);
+            background-size: 32px 32px;
+            mask-image: radial-gradient(ellipse at 50% 20%, black 25%, transparent 70%);
+        }
+
+        /* Section rhythm */
+        .section {
+            padding-top: 4.5rem;
+            padding-bottom: 4.5rem;
+            scroll-margin-top: 6rem;
+        }
+
+        .section-lg {
+            padding-top: 6rem;
+            padding-bottom: 6rem;
+        }
+
+        .section-xl {
+            padding-top: 8rem;
+            padding-bottom: 8rem;
+        }
+
+        /* Edge band */
+        .band {
+            position: relative;
+            padding: 0;
+        }
+
+        .band .band-inner {
+            margin: 0 auto;
+            max-width: 80rem;
+            padding: 3rem 1rem;
+        }
+
+        /* Reveal-on-scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity .6s ease, transform .6s ease;
+        }
+
+        .reveal.is-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-slow {
+            transition-duration: .9s;
+        }
+
+        .reveal-right {
+            transform: translateX(-18px);
+        }
+
+        .reveal-left {
+            transform: translateX(18px);
+        }
+
+        .reveal-right.is-in,
+        .reveal-left.is-in {
+            transform: translateX(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .reveal,
+            .reveal-slow,
+            .reveal-right,
+            .reveal-left {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+        }
+
+        /* Nav tab hover-only animation */
+        .nav-tab {
+            border-radius: .5rem;
+            padding: .5rem .75rem;
+            transition: background-color .25s ease, box-shadow .25s ease, transform .25s ease;
+        }
+
+        .nav-tab:hover {
+            background-color: rgba(59, 130, 246, 0.08);
+            /* subtle blue hover */
+            box-shadow: 0 0 24px rgba(59, 130, 246, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .nav-tab:focus-visible {
+            outline: 2px solid rgba(255, 255, 255, 0.35);
+            outline-offset: 2px;
+        }
+
+        /* Optional image hover float */
+        .img-float {
+            transition: transform .35s ease, box-shadow .35s ease;
+        }
+
+        .img-float:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+        }
+    </style>
+</head>
+
+<body class="bg-slate text-white antialiased">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 w-full backdrop-blur supports-[backdrop-filter]:bg-slate/60">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <a href="index.html" class="flex items-center gap-2">
+                    <span class="text-lg font-semibold">Hawk Cybersecurity</span>
+                </a>
+
+                <!-- Desktop nav -->
+                <nav class="hidden sm:flex items-center gap-2">
+                    <a href="solutions.html" class="nav-tab text-sm hover:text-hawk-300">Solutions</a>
+                    <a href="industry.html" class="nav-tab text-sm hover:text-hawk-300">Industry</a>
+                    <a href="company.html" class="nav-tab text-sm hover:text-hawk-300">Company</a>
+                    <a href="insight.html" class="nav-tab text-sm hover:text-hawk-300">Insight</a>
+                </nav>
+
+                <!-- CTA (desktop) -->
+                <a href="contact.html"
+                    class="hidden sm:inline-block rounded-full bg-hawk-500 px-4 py-2 text-sm font-semibold shadow-glow hover:bg-hawk-600">
+                    Connect with Us
+                </a>
+
+                <!-- Mobile hamburger -->
+                <button id="navToggle"
+                    class="sm:hidden rounded-md border border-white/20 p-2 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40"
+                    aria-controls="mobileNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile nav -->
+        <nav id="mobileNav" class="sm:hidden hidden border-t border-white/10">
+            <div class="px-4 py-3 flex flex-col gap-2">
+                <a href="solutions.html" class="nav-tab block">Solutions</a>
+                <a href="industry.html" class="nav-tab block">Industry</a>
+                <a href="company.html" class="nav-tab block">Company</a>
+                <a href="insight.html" class="nav-tab block">Insight</a>
+                <a href="contact.html"
+                    class="mt-2 inline-block rounded-full bg-hawk-500 px-4 py-2 text-sm font-semibold hover:bg-hawk-600">
+                    Connect with Us
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="relative overflow-hidden">
+        <div class="absolute inset-0 grid-bg"></div>
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
+            <h1 class="reveal text-4xl font-extrabold tracking-tight md:text-5xl">Solutions</h1>
+            <p class="reveal reveal-slow mt-4 text-lg text-white/80 max-w-3xl">
+                Compliance, security engineering, and the practical tools to harden your environment and pass
+                audits.
+            </p>
+            <div class="reveal mt-8 flex flex-wrap gap-3">
+                <a href="#compliance-experience"
+                    class="rounded-full bg-hawk-500 px-5 py-2.5 font-semibold shadow-glow hover:bg-hawk-600">Compliance
+                    & Experience</a>
+                <a href="#tech"
+                    class="rounded-full border border-white/20 px-5 py-2.5 font-semibold hover:border-hawk-400">Technology
+                    & Tools</a>
+                <a href="#sdlc"
+                    class="rounded-full border border-white/20 px-5 py-2.5 font-semibold hover:border-hawk-400">Secure
+                    SDLC</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compliance & Experience (split) -->
+    <section id="compliance-experience" class="section-lg">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-10 md:grid-cols-2 items-center">
+            <figure class="reveal reveal-left">
+                <img src="assets/img/porsche.pfp.jpg" alt="Compliance dashboard and audit checklist" loading="lazy"
+                    class="img-float w-full rounded-2xl border border-white/10 shadow-glow object-cover">
+                <figcaption class="mt-3 text-xs text-white/50">Audit-ready evidence and continuous control monitoring.
+                </figcaption>
+            </figure>
+
+            <div class="reveal">
+                <h2 class="text-3xl font-bold">Compliance & Experience</h2>
+                <p class="mt-4 text-white/70">We align your controls to leading frameworks and maintain them as living
+                    systems—so you stay compliant and resilient.</p>
+                <ul class="mt-6 list-disc pl-5 text-sm text-white/70 space-y-2">
+                    <li><strong>ISO 27001</strong>: control implementation, audit prep, continuous compliance</li>
+                    <li><strong>NIST 800-53 / 800-171 & FedRAMP</strong>: alignment and ATO support</li>
+                    <li><strong>HIPAA</strong>: risk assessments, Security & Privacy Rule safeguards</li>
+                    <li><strong>PCI DSS</strong>: gap analysis, remediation, attestation support</li>
+                    <li><strong>GDPR / PII / SOX / GLBA</strong>: privacy, ITGC, and safeguards rule implementation</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology & Tools -->
+    <section id="tech" class="section-lg bg-white/5">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="reveal">
+                <h2 class="text-3xl font-bold">Technology & Tools</h2>
+                <p class="mt-3 text-white/70 max-w-2xl">We use proven platforms across detection, response,
+                    vulnerability management, and cloud to deliver measurable outcomes.</p>
+            </div>
+
+            <div class="mt-8 grid gap-6 md:grid-cols-2">
+                <article class="reveal rounded-2xl border border-white/10 bg-ink p-6">
+                    <h3 class="font-semibold">Security Operations</h3>
+                    <ul class="mt-3 list-disc pl-5 text-sm text-white/70 space-y-1">
+                        <li>Splunk, SIEM content & detections</li>
+                        <li>EDR/XDR, threat intel, detection engineering</li>
+                        <li>Wireshark, packet analysis</li>
+                    </ul>
+                </article>
+                <article class="reveal rounded-2xl border border-white/10 bg-ink p-6">
+                    <h3 class="font-semibold">Vulnerability & AppSec</h3>
+                    <ul class="mt-3 list-disc pl-5 text-sm text-white/70 space-y-1">
+                        <li>Qualys, Rapid7</li>
+                        <li>Fortify (SAST), DAST/IAST pipelines</li>
+                        <li>SBOMs, dependency & secrets scanning</li>
+                    </ul>
+                </article>
+                <article class="reveal rounded-2xl border border-white/10 bg-ink p-6">
+                    <h3 class="font-semibold">Network & Perimeter</h3>
+                    <ul class="mt-3 list-disc pl-5 text-sm text-white/70 space-y-1">
+                        <li>Fortinet, Palo Alto, Cisco</li>
+                        <li>Meraki, Ubiquiti UniFi</li>
+                        <li>Zero Trust, VPN, NAC</li>
+                    </ul>
+                </article>
+                <article class="reveal rounded-2xl border border-white/10 bg-ink p-6">
+                    <h3 class="font-semibold">Cloud & Data</h3>
+                    <ul class="mt-3 list-disc pl-5 text-sm text-white/70 space-y-1">
+                        <li>AWS, Azure, Google Cloud</li>
+                        <li>IAM & identity-centric defense</li>
+                        <li>Encryption (TLS, NSA suites), key management</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Secure SDLC -->
+    <section id="sdlc" class="section-lg">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-10 md:grid-cols-2 items-center">
+            <div class="reveal">
+                <h2 class="text-3xl font-bold">Secure SDLC</h2>
+                <p class="mt-4 text-white/70">Keep developer velocity high with guardrails, not gatekeepers. Bake
+                    security into your pipelines and deliver with confidence.</p>
+                <ul class="mt-6 grid gap-3 text-sm text-white/70">
+                    <li class="flex items-start gap-3">
+                        <span class="mt-1 h-2 w-2 rounded-full bg-hawk-500"></span>
+                        Threat modeling & abuse-case catalogs
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="mt-1 h-2 w-2 rounded-full bg-hawk-500"></span>
+                        SAST/DAST/IAST in CI/CD (PR gates, artifact attestations)
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="mt-1 h-2 w-2 rounded-full bg-hawk-500"></span>
+                        SBOM generation, dependency & secrets scanning
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="mt-1 h-2 w-2 rounded-full bg-hawk-500"></span>
+                        Risk-based findings triage & developer workflows
+                    </li>
+                </ul>
+            </div>
+
+            <figure class="reveal reveal-right order-first md:order-last">
+                <img src="assets/img/DV_pfp.jpg" alt="CI/CD pipeline with security checks" loading="lazy"
+                    class="img-float w-full rounded-2xl border border-white/10 shadow-glow object-cover">
+                <figcaption class="mt-3 text-xs text-white/50">Guardrails integrated into your delivery pipelines.
+                </figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <!-- CTA Band -->
+    <section class="band bg-white/5">
+        <div class="band-inner">
+            <div
+                class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="reveal">
+                    <h3 class="text-2xl font-bold">Ready to raise your security posture?</h3>
+                    <p class="mt-2 text-white/70">Get a lightweight assessment and a prioritized action plan in days.
+                    </p>
+                </div>
+                <div class="reveal">
+                    <a href="contact.html"
+                        class="rounded-full bg-hawk-500 px-5 py-2.5 font-semibold shadow-glow hover:bg-hawk-600">Get a
+                        Security Review</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-12 border-t border-white/10">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid gap-10 md:grid-cols-5">
+                <div>
+                    <a href="index.html" class="flex items-center gap-2">
+                        <span class="text-lg font-semibold">Hawk Cybersecurity</span>
+                    </a>
+                    <p class="mt-4 text-sm text-white/60 max-w-xs">Practical security, clear outcomes, audit-ready
+                        evidence.</p>
+                    <a href="contact.html"
+                        class="mt-5 inline-block rounded-full bg-hawk-500 px-4 py-2 text-sm font-semibold shadow-glow hover:bg-hawk-600">
+                        Connect with Us
+                    </a>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-semibold text-white/80">Solutions</h4>
+                    <ul class="mt-3 space-y-2 text-sm text-white/70">
+                        <li><a class="hover:text-white" href="solutions.html">Compliance & Experience</a></li>
+                        <li><a class="hover:text-white" href="#tech">Technology & Tools</a></li>
+                        <li><a class="hover:text-white" href="#sdlc">Secure SDLC</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-semibold text-white/80">Industry</h4>
+                    <ul class="mt-3 space-y-2 text-sm text-white/70">
+                        <li><a class="hover:text-white" href="industry.html#government">Government & Public</a></li>
+                        <li><a class="hover:text-white" href="industry.html#finance">Financial Services</a></li>
+                        <li><a class="hover:text-white" href="industry.html#manufacturing">Manufacturing & OT</a></li>
+                        <li><a class="hover:text-white" href="industry.html#energy">Energy & Infrastructure</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-semibold text-white/80">Insight</h4>
+                    <ul class="mt-3 space-y-2 text-sm text-white/70">
+                        <li><a class="hover:text-white" href="insight.html#secure-sdlc">Secure SDLC</a></li>
+                        <li><a class="hover:text-white" href="insight.html#governance">AI Governance</a></li>
+                        <li><a class="hover:text-white" href="insight.html#threat">Threat Intelligence</a></li>
+                        <li><a class="hover:text-white" href="insight.html#partners">Partners</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-semibold text-white/80">Company</h4>
+                    <ul class="mt-3 space-y-2 text-sm text-white/70">
+                        <li><a class="hover:text-white" href="company.html#mission">Mission</a></li>
+                        <li><a class="hover:text-white" href="company.html#vision">Vision</a></li>
+                        <li><a class="hover:text-white" href="company.html#values">Values</a></li>
+                        <li><a class="hover:text-white" href="company.html#team">Team</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="mt-10 border-t border-white/10 pt-6 text-sm text-white/60 flex flex-wrap items-center justify-between gap-4">
+            <p>© <span id="y"></span> Hawk Cybersecurity. All rights reserved.</p>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-white">Privacy</a>
+                <a href="#" class="hover:text-white">Terms</a>
+                <a href="#" class="hover:text-white">Status</a>
+            </div>
+        </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Year in footer
+        const yEl = document.getElementById('y');
+        if (yEl) yEl.textContent = new Date().getFullYear();
+
+        // Mobile nav toggle
+        const navToggle = document.getElementById('navToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        navToggle?.addEventListener('click', () => {
+            const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+            navToggle.setAttribute('aria-expanded', String(!expanded));
+            mobileNav.classList.toggle('hidden');
+        });
+
+        // Reveal-on-scroll
+        (function () {
+            const els = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window) || !els.length) return els.forEach(el => el.classList.add('is-in'));
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+            }, { threshold: 0.15 });
+            els.forEach(el => io.observe(el));
+        })();
+    </script>
+</body>
+
+</html>

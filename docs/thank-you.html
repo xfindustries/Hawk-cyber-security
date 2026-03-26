@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Thank You — Hawk Cybersecurity</title>
+    <meta name="description" content="Thank you for contacting Hawk Cybersecurity.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+                    colors: {
+                        hawk: {
+                            50: '#EFF6FF',
+                            100: '#DBEAFE',
+                            200: '#BFDBFE',
+                            300: '#93C5FD',
+                            400: '#60A5FA',
+                            500: '#3B82F6',
+                            600: '#2563EB',
+                            700: '#1D4ED8',
+                            800: '#1E40AF',
+                            900: '#1E3A8A'
+                        }
+                    },
+                    boxShadow: { glow: '0 0 40px rgba(59,130,246,.15)' }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0B0C0E;
+            color: #F3F4F6;
+        }
+
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(255, 255, 255, .04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .04) 1px, transparent 1px);
+            background-size: 32px 32px;
+            mask-image: radial-gradient(ellipse at 50% 20%, black 25%, transparent 70%);
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 w-full backdrop-blur supports-[backdrop-filter]:bg-black/40">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <a href="index.html" class="text-lg font-semibold">
+                    Hawk Cybersecurity
+                </a>
+                <a href="index.html"
+                    class="rounded-full bg-hawk-500 px-4 py-2 text-sm font-semibold shadow-glow hover:bg-hawk-600">
+                    Return Home
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden min-h-[80vh] flex items-center justify-center text-center">
+        <div class="absolute inset-0 grid-bg"></div>
+
+        <div class="relative max-w-2xl px-6">
+            <div class="mb-6 flex justify-center">
+                <div class="rounded-full bg-hawk-500/20 p-5">
+                    <svg class="h-10 w-10 text-hawk-400" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+            </div>
+
+            <h1 class="text-4xl font-extrabold tracking-tight md:text-5xl">
+                Message Sent Successfully
+            </h1>
+
+            <p class="mt-6 text-lg text-white/70">
+                Thank you for reaching out to Hawk Cybersecurity.
+                Our team will review your inquiry and respond within 1–2 business days.
+            </p>
+
+            <div class="mt-10 flex flex-wrap justify-center gap-4">
+                <a href="index.html"
+                    class="rounded-full bg-hawk-500 px-6 py-3 font-semibold shadow-glow hover:bg-hawk-600">
+                    Back to Home
+                </a>
+
+                <a href="insight.html"
+                    class="rounded-full border border-white/20 px-6 py-3 font-semibold hover:border-hawk-400">
+                    Explore Insights
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 py-6 text-center text-sm text-white/60">
+        © <span id="y"></span> Hawk Cybersecurity. All rights reserved.
+    </footer>
+
+    <script>
+        document.getElementById('y').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+
+</html>
