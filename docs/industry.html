@@ -230,120 +230,79 @@
         </div>
     </section>
 
-    <!-- Gallery band (top visuals)
-    <section class="band bg-white/5">
-        <div class="band-inner">
-            <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-                <div class="grid gap-6 lg:grid-cols-1">
-                    <figure class="reveal">
-                        <div class="relative w-full overflow-hidden rounded-xl border border-white/10">
-                            <video autoplay muted loop playsinline preload="auto"
-                                class="w-full h-full object-cover img-float">
-                                <source src="assets/vid/HC_cyberlock.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                            <div class="absolute inset-0 bg-black/20"></div>
-                        </div>
+    <!-- Industries Grid -->
+    <section class="section-lg">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-                        <figcaption class="mt-2 text-sm text-white/60">
-                            Secure Sectors
-                        </figcaption>
-                    </figure>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-    <!-- Government & Public -->
-    <section id="government" class="section-lg">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-10 md:grid-cols-2 items-start">
-            <div class="reveal">
-                <h2 class="text-3xl font-bold">Government & Public Sector</h2>
-                <p class="mt-4 text-white/70">
-                    Agencies and public organizations face strict mandates and mission-critical uptime requirements. We
-                    align programs to
-                    frameworks like NIST 800-53/171 and FedRAMP to protect sensitive data, prevent service disruption,
-                    and maintain continuity.
+            <!-- Intro -->
+            <div class="reveal max-w-3xl">
+                <p class="text-sm font-semibold uppercase tracking-[0.2em] text-hawk-300">
+                    Industries
                 </p>
-                <ul class="mt-6 list-disc pl-5 text-sm text-white/70 space-y-2">
-                    <li>NIST, RMF, and ATO support; control inheritance & continuous monitoring</li>
-                    <li>Identity-centric defense: zero trust, privileged access, logging & detections</li>
-                    <li>Incident response playbooks and tabletop exercises</li>
-                </ul>
-            </div>
-            <figure class="reveal reveal-right">
-                <img src="assets/img/porsche.pfp.jpg" alt="Secure government systems" loading="lazy"
-                    class="img-float w-full rounded-2xl border border-white/10 shadow-glow object-cover">
-                <figcaption class="mt-3 text-xs text-white/50">Program alignment to NIST & FedRAMP.</figcaption>
-            </figure>
-        </div>
-    </section>
-
-    <!-- Financial Services -->
-    <section id="finance" class="section-lg bg-white/5">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-10 md:grid-cols-2 items-start">
-            <figure class="reveal reveal-left order-last md:order-first">
-                <img src="assets/img/DV_pfp.jpg" alt="Banking cybersecurity monitoring" loading="lazy"
-                    class="img-float w-full rounded-2xl border border-white/10 shadow-glow object-cover">
-                <figcaption class="mt-3 text-xs text-white/50">Fraud prevention & regulatory compliance.</figcaption>
-            </figure>
-            <div class="reveal">
-                <h2 class="text-3xl font-bold">Financial Services</h2>
+                <h2 class="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
+                    Security tailored to your sector, risks, and regulations.
+                </h2>
                 <p class="mt-4 text-white/70">
-                    High-value targets require layered, measurable controls. We protect transactions, reduce fraud, and
-                    meet PCI DSS and privacy obligations.
+                    Every industry faces unique threats and compliance demands. We build practical security programs
+                    aligned to your environment—not generic checklists.
                 </p>
-                <ul class="mt-6 list-disc pl-5 text-sm text-white/70 space-y-2">
-                    <li>PCI DSS gap analysis, remediation roadmaps, and attestation support</li>
-                    <li>Threat detection engineering (SIEM/XDR) and fraud monitoring integrations</li>
-                    <li>Data protection and key management, encryption at-rest/in-transit</li>
-                </ul>
             </div>
-        </div>
-    </section>
 
-    <!-- Manufacturing & OT -->
-    <section id="manufacturing" class="section-lg">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-10 md:grid-cols-2 items-start">
-            <div class="reveal">
-                <h2 class="text-3xl font-bold">Manufacturing & OT</h2>
-                <p class="mt-4 text-white/70">
-                    Interconnected production lines and IoT increase exposure. We protect operational tech, minimize
-                    downtime, and safeguard IP.
-                </p>
-                <ul class="mt-6 list-disc pl-5 text-sm text-white/70 space-y-2">
-                    <li>OT segmentation, asset discovery, and anomaly detection</li>
-                    <li>Vulnerability management tuned for patch windows & safety constraints</li>
-                    <li>Supplier risk and secure firmware/PLC change control</li>
-                </ul>
-            </div>
-            <figure class="reveal reveal-right">
-                <img src="assets/img/porsche.pfp.jpg" alt="Industrial control systems security" loading="lazy"
-                    class="img-float w-full rounded-2xl border border-white/10 shadow-glow object-cover">
-                <figcaption class="mt-3 text-xs text-white/50">Protecting uptime & intellectual property.</figcaption>
-            </figure>
-        </div>
-    </section>
+            <!-- Cards -->
+            <div class="mt-12 grid gap-6 md:grid-cols-2">
 
-    <!-- Energy & Infrastructure -->
-    <section id="energy" class="section-lg bg-white/5">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-10 md:grid-cols-2 items-start">
-            <figure class="reveal reveal-left order-last md:order-first">
-                <img src="assets/img/DV_pfp.jpg" alt="Energy grid monitoring" loading="lazy"
-                    class="img-float w-full rounded-2xl border border-white/10 shadow-glow object-cover">
-                <figcaption class="mt-3 text-xs text-white/50">Critical infrastructure resilience.</figcaption>
-            </figure>
-            <div class="reveal">
-                <h2 class="text-3xl font-bold">Energy & Infrastructure</h2>
-                <p class="mt-4 text-white/70">
-                    Critical services demand resilience. We harden controls, prevent service disruption, and align with
-                    sector standards (e.g., ISO, NERC-CIP).
-                </p>
-                <ul class="mt-6 list-disc pl-5 text-sm text-white/70 space-y-2">
-                    <li>Real-time monitoring and incident runbooks across IT/OT</li>
-                    <li>Identity, access, and segmentation for remote operations</li>
-                    <li>Backup, recovery, business continuity, and crisis communication testing</li>
-                </ul>
+                <!-- Government -->
+                <article id="government" class="reveal img-float rounded-2xl border border-white/10 bg-ink p-6">
+                    <h3 class="text-xl font-semibold">Government & Public Sector</h3>
+                    <p class="mt-3 text-sm text-white/70">
+                        Mission-critical environments with strict regulatory mandates and uptime requirements.
+                    </p>
+                    <ul class="mt-4 text-sm text-white/70 space-y-2">
+                        <li>• NIST 800-53 / 800-171, RMF, FedRAMP alignment</li>
+                        <li>• ATO support and continuous monitoring</li>
+                        <li>• Zero Trust and identity-based defense</li>
+                    </ul>
+                </article>
+
+                <!-- Finance -->
+                <article id="finance" class="reveal img-float rounded-2xl border border-white/10 bg-ink p-6">
+                    <h3 class="text-xl font-semibold">Financial Services</h3>
+                    <p class="mt-3 text-sm text-white/70">
+                        High-value targets requiring layered protection and strong fraud controls.
+                    </p>
+                    <ul class="mt-4 text-sm text-white/70 space-y-2">
+                        <li>• PCI DSS compliance and audit readiness</li>
+                        <li>• Fraud detection and transaction monitoring</li>
+                        <li>• Encryption and key management strategies</li>
+                    </ul>
+                </article>
+
+                <!-- Manufacturing -->
+                <article id="manufacturing" class="reveal img-float rounded-2xl border border-white/10 bg-ink p-6">
+                    <h3 class="text-xl font-semibold">Manufacturing & OT</h3>
+                    <p class="mt-3 text-sm text-white/70">
+                        Protect operational technology and reduce downtime in interconnected environments.
+                    </p>
+                    <ul class="mt-4 text-sm text-white/70 space-y-2">
+                        <li>• OT segmentation and asset visibility</li>
+                        <li>• Vulnerability management for production systems</li>
+                        <li>• Supply chain and firmware security</li>
+                    </ul>
+                </article>
+
+                <!-- Energy -->
+                <article id="energy" class="reveal img-float rounded-2xl border border-white/10 bg-ink p-6">
+                    <h3 class="text-xl font-semibold">Energy & Infrastructure</h3>
+                    <p class="mt-3 text-sm text-white/70">
+                        Critical infrastructure demands resilience and continuous protection.
+                    </p>
+                    <ul class="mt-4 text-sm text-white/70 space-y-2">
+                        <li>• NERC-CIP and ISO-aligned controls</li>
+                        <li>• IT/OT monitoring and incident response</li>
+                        <li>• Backup, recovery, and continuity planning</li>
+                    </ul>
+                </article>
+
             </div>
         </div>
     </section>
@@ -353,12 +312,12 @@
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <h2 class="reveal text-3xl font-bold">Also supporting</h2>
             <div class="mt-8 grid gap-6 md:grid-cols-2">
-                <article id="logistics" class="reveal rounded-2xl border border-white/10 bg-ink p-6">
+                <article id="logistics" class="reveal img-float rounded-2xl border border-white/10 bg-ink p-6">
                     <h3 class="font-semibold">Logistics</h3>
                     <p class="mt-3 text-sm text-white/70">Secure supply-chain data flows, EDI integrations, and
                         real-time ops—without compromising availability.</p>
                 </article>
-                <article id="retail" class="reveal rounded-2xl border border-white/10 bg-ink p-6">
+                <article id="retail" class="reveal img-float rounded-2xl border border-white/10 bg-ink p-6">
                     <h3 class="font-semibold">Consumer Products & Retail</h3>
                     <p class="mt-3 text-sm text-white/70">Protect payment systems and customer PII while keeping
                         checkout smooth and compliant.</p>
