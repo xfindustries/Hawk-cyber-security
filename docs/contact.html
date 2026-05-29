@@ -456,6 +456,18 @@
                 grid-template-columns: 1fr !important;
             }
         }
+
+        /* Mouse tracking glow */
+        .hero-glow {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 40%),
+                    rgba(59, 130, 246, 0.08) 0%,
+                    transparent 70%);
+            transition: background 0.05s ease;
+        }
     </style>
 </head>
 
@@ -515,6 +527,7 @@
             style="position:absolute;top:-10%;right:5%;width:500px;height:500px;background:radial-gradient(circle,rgba(59,130,246,0.08) 0%,transparent 65%);z-index:0;pointer-events:none;">
         </div>
 
+        <div class="hero-glow" id="heroGlow"></div>
         <div style="position:relative;z-index:2;max-width:720px;margin:0 auto;text-align:center;">
             <div class="reveal" style="margin-bottom:1.5rem;">
                 <span class="stat-pill">
@@ -983,6 +996,34 @@
             submitBtn.disabled = false;
             submitBtn.textContent = 'Send Message →';
         });
+
+        // Mouse tracking hero glow
+        (function () {
+            const glow = document.getElementById('heroGlow');
+            if (!glow) return;
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+            const hero = glow.closest('section');
+            let raf;
+
+            hero.addEventListener('mousemove', (e) => {
+                if (raf) cancelAnimationFrame(raf);
+                raf = requestAnimationFrame(() => {
+                    const rect = hero.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+                    const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
+                    hero.style.setProperty('--mx', x + '%');
+                    hero.style.setProperty('--my', y + '%');
+                });
+            });
+
+            hero.addEventListener('mouseleave', () => {
+                if (raf) cancelAnimationFrame(raf);
+                // Smoothly reset to center
+                hero.style.setProperty('--mx', '50%');
+                hero.style.setProperty('--my', '40%');
+            });
+        })();
     </script>
 </body>
 

@@ -467,11 +467,24 @@
 
     <!-- ── HERO ───────────────────────────────────── -->
     <section class="hero-scanlines" style="position:relative;padding:7rem 1.5rem 6rem;overflow:hidden;">
-        <!-- Grid background -->
-        <div class="grid-bg radial-fade" style="position:absolute;inset:0;z-index:0;"></div>
-        <!-- Blue orb -->
+        <!-- Video background -->
+        <video autoplay muted loop playsinline preload="auto"
+            style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0.55;filter:saturate(0.7) brightness(0.85);">
+            <source src="assets/vid/HC_background.mp4.mp4" type="video/mp4">
+        </video>
+        <!-- Radial vignette — darkens edges, keeps center alive -->
         <div
-            style="position:absolute;top:-10%;left:55%;width:700px;height:700px;background:radial-gradient(circle,rgba(59,130,246,0.1) 0%,transparent 65%);transform:translateX(-50%);z-index:0;pointer-events:none;">
+            style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 50% 40%,transparent 30%,rgba(9,9,11,0.55) 100%);z-index:1;">
+        </div>
+        <!-- Base dark tint -->
+        <div style="position:absolute;inset:0;background:rgba(9,9,11,0.45);z-index:1;"></div>
+        <!-- Left-side fade so text stays legible -->
+        <div
+            style="position:absolute;inset:0;background:linear-gradient(to right,rgba(9,9,11,0.6) 0%,transparent 60%);z-index:1;">
+        </div>
+        <!-- Bottom fade into next section — tall and soft -->
+        <div
+            style="position:absolute;inset-x:0;bottom:0;height:18rem;background:linear-gradient(to bottom,transparent 0%,rgba(9,9,11,0.5) 40%,#111113 100%);z-index:1;">
         </div>
 
         <div style="position:relative;z-index:2;max-width:900px;margin:0 auto;">
