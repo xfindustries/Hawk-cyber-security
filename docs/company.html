@@ -2,442 +2,717 @@
 <html lang="en" class="scroll-smooth">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Company — Hawk Cybersecurity</title>
-    <meta name="description" content="About Hawk Cybersecurity: mission, vision, values, and team.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
-                    colors: {
-                        hawk: {
-                            50: '#EFF6FF',
-                            100: '#DBEAFE',
-                            200: '#BFDBFE',
-                            300: '#93C5FD',
-                            400: '#60A5FA',
-                            500: '#3B82F6',   /* Primary blue accent */
-                            600: '#2563EB',
-                            700: '#1D4ED8',
-                            800: '#1E40AF',
-                            900: '#1E3A8A'
-                        },
-                        ink: '#181A1B',     /* panels and cards */
-                        slate: '#0B0C0E',   /* main background */
-                    },
-                    boxShadow: { glow: '0 0 40px rgba(59,130,246,.15)' }
-                }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Company — Hawk Cybersecurity</title>
+  <meta name="description" content="About Hawk Cybersecurity: mission, vision, values, and team.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['DM Sans', 'ui-sans-serif', 'system-ui'],
+            mono: ['DM Mono', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            hawk: {
+              50: '#EFF6FF', 100: '#DBEAFE', 200: '#BFDBFE', 300: '#93C5FD',
+              400: '#60A5FA', 500: '#3B82F6', 600: '#2563EB', 700: '#1D4ED8',
+              800: '#1E40AF', 900: '#1E3A8A'
             }
+          }
         }
-    </script>
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --bg: #09090B;
+      --surface: #111113;
+      --surface-2: #18181B;
+      --text: #FAFAFA;
+      --muted: rgba(250, 250, 250, 0.55);
+      --border: rgba(250, 250, 250, 0.08);
+      --accent: #3B82F6;
+      --accent-dim: rgba(59, 130, 246, 0.12);
+      --accent-glow: rgba(59, 130, 246, 0.25);
+    }
 
-    <style>
-        body {
-            background-color: #0B0C0E;
-            color: #F3F4F6;
-        }
+    * { box-sizing: border-box; }
 
-        .grid-bg {
-            background-image:
-                linear-gradient(rgba(255, 255, 255, .04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, .04) 1px, transparent 1px);
-            background-size: 32px 32px;
-            mask-image: radial-gradient(ellipse at 50% 20%, black 25%, transparent 70%);
-        }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', ui-sans-serif, system-ui;
+      -webkit-font-smoothing: antialiased;
+      margin: 0;
+    }
 
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
 
-        /* Section rhythm */
-        .section {
-            padding-top: 4.5rem;
-            padding-bottom: 4.5rem;
-            scroll-margin-top: 6rem;
-        }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .radial-fade {
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 80%);
+    }
 
-        .section-lg {
-            padding-top: 6rem;
-            padding-bottom: 6rem;
-        }
+    /* Nav */
+    .nav-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(250,250,250,0.6);
+      padding: 0.4rem 0.75rem;
+      border-radius: 0.5rem;
+      transition: color 0.2s, background-color 0.2s;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+    }
+    .nav-link:hover {
+      color: var(--text);
+      background-color: rgba(255,255,255,0.06);
+    }
 
-        .section-xl {
-            padding-top: 8rem;
-            padding-bottom: 8rem;
-        }
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 0.6rem 1.25rem;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+      letter-spacing: 0.01em;
+      box-shadow: 0 0 24px var(--accent-glow);
+    }
+    .btn-primary:hover {
+      background: #2563EB;
+      transform: translateY(-1px);
+      box-shadow: 0 0 36px var(--accent-glow);
+    }
 
-        /* Edge band */
-        .band {
-            position: relative;
-            padding: 0;
-        }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: transparent;
+      color: rgba(250,250,250,0.7);
+      font-weight: 500;
+      font-size: 0.875rem;
+      padding: 0.6rem 1.25rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.25);
+      color: #fff;
+      background: rgba(255,255,255,0.04);
+    }
 
-        .band .band-inner {
-            margin: 0 auto;
-            max-width: 80rem;
-            padding: 3rem 1rem;
-        }
+    /* Pills & tags */
+    .stat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent-dim);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 9999px;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #93C5FD;
+      font-family: 'DM Mono', monospace;
+    }
 
-        /* Reveal-on-scroll */
-        .reveal {
-            opacity: 0;
-            transform: translateY(14px);
-            transition: opacity .6s ease, transform .6s ease;
-        }
+    .tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 0.35rem;
+      padding: 0.2rem 0.6rem;
+      font-size: 0.72rem;
+      font-family: 'DM Mono', monospace;
+      color: rgba(250,250,250,0.55);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
 
-        .reveal.is-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    /* Cards */
+    .card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.75rem;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .card:hover {
+      border-color: rgba(59,130,246,0.22);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    }
+    .card:hover::before { opacity: 1; }
 
-        .reveal-slow {
-            transition-duration: .9s;
-        }
+    .card-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: var(--accent-dim);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 0.625rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
 
-        .reveal-right {
-            transform: translateX(-18px);
-        }
+    /* Check list */
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.625rem;
+      font-size: 0.875rem;
+      color: rgba(250,250,250,0.6);
+      line-height: 1.55;
+      font-weight: 300;
+      padding: 0.35rem 0;
+    }
+    .check-item svg { flex-shrink: 0; margin-top: 0.15rem; }
 
-        .reveal-left {
-            transform: translateX(18px);
-        }
+    /* Team card */
+    .team-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.75rem;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .team-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .team-card:hover {
+      border-color: rgba(59,130,246,0.22);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    }
+    .team-card:hover::before { opacity: 1; }
 
-        .reveal-right.is-in,
-        .reveal-left.is-in {
-            transform: translateX(0);
-        }
+    /* Avatar initials */
+    .avatar {
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 50%;
+      background: var(--accent-dim);
+      border: 1px solid rgba(59,130,246,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #93C5FD;
+      flex-shrink: 0;
+    }
 
-        @media (prefers-reduced-motion: reduce) {
+    /* Value pill */
+    .value-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 0.625rem;
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(250,250,250,0.75);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .value-pill:hover {
+      border-color: rgba(59,130,246,0.25);
+      background: rgba(59,130,246,0.05);
+    }
 
-            .reveal,
-            .reveal-slow,
-            .reveal-right,
-            .reveal-left {
-                opacity: 1 !important;
-                transform: none !important;
-                transition: none !important;
-            }
-        }
+    /* Eyebrow */
+    .eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.85;
+    }
 
-        /* Nav tab hover-only animation */
-        .nav-tab {
-            border-radius: .5rem;
-            padding: .5rem .75rem;
-            transition: background-color .25s ease, box-shadow .25s ease, transform .25s ease;
-        }
+    /* Headings */
+    .hero-h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+    .section-h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, #ffffff 0%, #93C5FD 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-        .nav-tab:hover {
-            background-color: rgba(59, 130, 246, 0.08);
-            /* subtle blue hover */
-            box-shadow: 0 0 24px rgba(59, 130, 246, 0.15);
-            transform: translateY(-1px);
-        }
+    /* Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.is-in { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.05s; }
+    .reveal-d2 { transition-delay: 0.12s; }
+    .reveal-d3 { transition-delay: 0.19s; }
+    .reveal-d4 { transition-delay: 0.26s; }
 
-        .nav-tab:focus-visible {
-            outline: 2px solid rgba(255, 255, 255, 0.35);
-            outline-offset: 2px;
-        }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
+    }
 
-        /* Optional image hover float */
-        .img-float {
-            transition: transform .35s ease, box-shadow .35s ease;
-        }
+    .section { padding: 5rem 0; scroll-margin-top: 5rem; }
+    .section-sm { padding: 3.5rem 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
-        .img-float:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
-        }
-    </style>
+    footer a { color: rgba(250,250,250,0.5); text-decoration: none; transition: color 0.2s; font-size: 0.875rem; }
+    footer a:hover { color: var(--text); }
+
+    @media (max-width: 640px) {
+      .hidden-mobile { display: none !important; }
+      .show-mobile { display: flex !important; }
+    }
+    @media (min-width: 641px) {
+      .show-mobile { display: none !important; }
+    }
+    @media (max-width: 768px) {
+      .three-col { grid-template-columns: 1fr !important; }
+      .two-col { grid-template-columns: 1fr !important; }
+      .footer-grid { grid-template-columns: 1fr 1fr !important; }
+      .who-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+    }
+    @media (max-width: 520px) {
+      .footer-grid { grid-template-columns: 1fr !important; }
+    }
+  </style>
 </head>
 
-<body class="bg-slate text-white antialiased">
+<body>
 
-    <!-- Header -->
-    <header class="sticky top-0 z-40 w-full backdrop-blur supports-[backdrop-filter]:bg-slate/60">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="flex h-16 items-center justify-between">
-                <a href="index.html" class="flex items-center gap-2">
-                    <span class="text-lg font-semibold">Hawk Cybersecurity</span>
-                </a>
+  <!-- ── HEADER ──────────────────────────────────── -->
+  <header style="position:sticky;top:0;z-index:50;background:rgba(9,9,11,0.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);">
+    <div style="max-width:1280px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:60px;">
 
-                <!-- Desktop nav -->
-                <nav class="hidden sm:flex items-center gap-2">
-                    <a href="solutions.html" class="nav-tab text-sm hover:text-hawk-300">Solutions</a>
-                    <a href="industry.html" class="nav-tab text-sm hover:text-hawk-300">Industry</a>
-                    <a href="company.html" class="nav-tab text-sm hover:text-hawk-300">Company</a>
-                    <a href="insight.html" class="nav-tab text-sm hover:text-hawk-300">Insight</a>
-                </nav>
+      <a href="index.html" style="display:flex;align-items:center;gap:0.625rem;text-decoration:none;">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+          <rect width="26" height="26" rx="6" fill="rgba(59,130,246,0.15)" stroke="rgba(59,130,246,0.35)" stroke-width="1"/>
+          <path d="M7 18L13 7L19 18H15.5L13 13.5L10.5 18H7Z" fill="#60A5FA"/>
+        </svg>
+        <span style="font-weight:600;font-size:0.95rem;letter-spacing:-0.01em;color:var(--text);">Hawk Cybersecurity</span>
+      </a>
 
-                <!-- CTA (desktop) -->
-                <a href="contact.html"
-                    class="hidden sm:inline-block rounded-full bg-hawk-500 px-4 py-2 text-sm font-semibold shadow-glow hover:bg-hawk-600">
-                    Connect with Us
-                </a>
+      <nav style="display:flex;align-items:center;gap:0.25rem;" class="hidden-mobile">
+        <a href="solutions.html" class="nav-link">Solutions</a>
+        <a href="industry.html" class="nav-link">Industry</a>
+        <a href="company.html" class="nav-link" style="color:var(--text);background:rgba(255,255,255,0.06);">Company</a>
+        <a href="insight.html" class="nav-link">Insight</a>
+      </nav>
 
-                <!-- Mobile hamburger -->
-                <button id="navToggle"
-                    class="sm:hidden rounded-md border border-white/20 p-2 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40"
-                    aria-controls="mobileNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                        <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" />
-                    </svg>
-                </button>
-            </div>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <a href="contact.html" class="btn-primary hidden-mobile">Connect with Us</a>
+        <button id="navToggle" aria-label="Toggle navigation" style="background:transparent;border:1px solid var(--border);border-radius:0.5rem;padding:0.4rem 0.5rem;color:var(--text);cursor:pointer;display:none;" class="show-mobile">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="mobileNav" style="display:none;padding:0.75rem 1.5rem 1rem;border-top:1px solid var(--border);background:var(--surface);flex-direction:column;gap:0.25rem;">
+      <a href="solutions.html" class="nav-link" style="display:block;padding:0.6rem 0.5rem;">Solutions</a>
+      <a href="industry.html" class="nav-link" style="display:block;padding:0.6rem 0.5rem;">Industry</a>
+      <a href="company.html" class="nav-link" style="display:block;padding:0.6rem 0.5rem;">Company</a>
+      <a href="insight.html" class="nav-link" style="display:block;padding:0.6rem 0.5rem;">Insight</a>
+      <a href="contact.html" class="btn-primary" style="margin-top:0.75rem;justify-content:center;">Connect with Us</a>
+    </nav>
+  </header>
+
+  <!-- ── HERO ───────────────────────────────────── -->
+  <section style="position:relative;padding:6rem 1.5rem 5rem;overflow:hidden;">
+    <div class="grid-bg radial-fade" style="position:absolute;inset:0;z-index:0;"></div>
+    <div style="position:absolute;top:-5%;right:5%;width:600px;height:600px;background:radial-gradient(circle,rgba(59,130,246,0.08) 0%,transparent 65%);z-index:0;pointer-events:none;"></div>
+
+    <div style="position:relative;z-index:2;max-width:860px;margin:0 auto;">
+      <div class="reveal" style="margin-bottom:1.5rem;">
+        <span class="stat-pill">Est. Hawk Cybersecurity</span>
+      </div>
+
+      <h1 class="hero-h1 reveal reveal-d1">
+        <span class="text-gradient">People-first security,</span><br>
+        <span style="color:rgba(250,250,250,0.75);font-weight:300;">powered by expertise.</span>
+      </h1>
+
+      <p class="reveal reveal-d2" style="margin-top:1.25rem;font-size:1.05rem;line-height:1.7;color:rgba(250,250,250,0.6);max-width:580px;font-weight:300;">
+        We equip organizations with the processes, technology, and mindset to stay ahead of threats — empowering people to act with confidence, not just compliance checkboxes.
+      </p>
+
+      <div class="reveal reveal-d3" style="margin-top:2rem;display:flex;flex-wrap:wrap;gap:0.75rem;">
+        <a href="contact.html" class="btn-primary">Connect with Us →</a>
+        <a href="#team" class="btn-ghost">Meet the Team</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHO WE ARE ─────────────────────────────── -->
+  <section class="section" style="background:var(--surface);position:relative;z-index:1;">
+    <div class="container">
+      <div class="who-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;">
+
+        <div class="reveal">
+          <p class="eyebrow" style="margin-bottom:0.75rem;">Who We Are</p>
+          <h2 class="section-h2" style="margin-bottom:1rem;">Dedicated defenders<br>with deep roots.</h2>
+          <p style="color:var(--muted);line-height:1.7;font-size:0.95rem;font-weight:300;margin-bottom:1.5rem;">
+            Hawk Cybersecurity is a team of subject-matter experts committed to safeguarding organizations against an ever-evolving threat landscape. We combine deep experience across AI, cloud, and modern infrastructure with practical controls and audit-ready reporting.
+          </p>
+          <p style="color:var(--muted);line-height:1.7;font-size:0.95rem;font-weight:300;">
+            We work alongside your team — not around them — translating complex security demands into programs your people can actually operate and your leaders can confidently stand behind.
+          </p>
         </div>
 
-        <!-- Mobile nav -->
-        <nav id="mobileNav" class="sm:hidden hidden border-t border-white/10">
-            <div class="px-4 py-3 flex flex-col gap-2">
-                <a href="solutions.html" class="nav-tab block">Solutions</a>
-                <a href="industry.html" class="nav-tab block">Industry</a>
-                <a href="company.html" class="nav-tab block">Company</a>
-                <a href="insight.html" class="nav-tab block">Insight</a>
-                <a href="contact.html"
-                    class="mt-2 inline-block rounded-full bg-hawk-500 px-4 py-2 text-sm font-semibold hover:bg-hawk-600">
-                    Connect with Us
-                </a>
+        <div class="reveal reveal-d1" style="display:flex;flex-direction:column;gap:0;">
+          <div style="display:flex;align-items:flex-start;gap:1rem;padding:1.25rem 0;border-bottom:1px solid var(--border);">
+            <div style="width:2rem;height:2rem;background:var(--accent-dim);border:1px solid rgba(59,130,246,0.2);border-radius:0.5rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:0.1rem;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>
             </div>
-        </nav>
-    </header>
-
-    <!-- Hero -->
-    <section class="relative overflow-hidden">
-        <div class="absolute inset-0 grid-bg"></div>
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
-            <h1 class="reveal text-4xl font-extrabold tracking-tight md:text-5xl">About Us</h1>
-            <p class="reveal reveal-slow mt-4 text-lg text-white/80 max-w-3xl">
-                We equip organizations with the processes, technology, and mindset to stay ahead of threats—empowering
-                people to act with confidence.
-            </p>
+            <div>
+              <div style="font-weight:600;font-size:0.95rem;margin-bottom:0.3rem;">Cloud-first, identity-centric defense</div>
+              <div style="font-size:0.85rem;color:var(--muted);font-weight:300;line-height:1.6;">Built for modern infrastructure — not yesterday's perimeter assumptions.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:1rem;padding:1.25rem 0;border-bottom:1px solid var(--border);">
+            <div style="width:2rem;height:2rem;background:var(--accent-dim);border:1px solid rgba(59,130,246,0.2);border-radius:0.5rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:0.1rem;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            </div>
+            <div>
+              <div style="font-weight:600;font-size:0.95rem;margin-bottom:0.3rem;">Audit-ready without the busywork</div>
+              <div style="font-size:0.85rem;color:var(--muted);font-weight:300;line-height:1.6;">Evidence that holds up — collected efficiently and organized for scrutiny.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:1rem;padding:1.25rem 0;">
+            <div style="width:2rem;height:2rem;background:var(--accent-dim);border:1px solid rgba(59,130,246,0.2);border-radius:0.5rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:0.1rem;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div>
+              <div style="font-weight:600;font-size:0.95rem;margin-bottom:0.3rem;">Clear reporting executives understand</div>
+              <div style="font-size:0.85rem;color:var(--muted);font-weight:300;line-height:1.6;">Security posture communicated in business terms, not just technical jargon.</div>
+            </div>
+          </div>
         </div>
-    </section>
 
-    <!-- Who we are (optional intro) -->
-    <section class="section-lg">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-10 md:grid-cols-2 items-center">
-            <figure class="reveal reveal-left">
-                <img src="assets/img/about_who-we-are.jpg" alt="Team collaborating in a security operation setting"
-                    loading="lazy" class="img-float w-full rounded-2xl border border-white/10 shadow-glow object-cover">
-                <figcaption class="mt-3 text-xs text-white/50">People-first security, powered by the right tools and
-                    strategy.</figcaption>
-            </figure>
-            <div class="reveal">
-                <h2 class="text-3xl font-bold">Who we are</h2>
-                <p class="mt-4 text-white/70">
-                    Hawk Cybersecurity is a dedicated team of subject-matter experts committed to safeguarding
-                    organizations against an ever-evolving threat landscape.
-                    We combine deep experience across AI, cloud, and modern infrastructure with practical controls and
-                    audit-ready reporting.
-                </p>
-                <ul class="mt-6 grid gap-3 text-sm text-white/70">
-                    <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-hawk-500"></span>
-                        Cloud-first, identity-centric defense</li>
-                    <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-hawk-500"></span>
-                        Audit-ready without the busywork</li>
-                    <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-hawk-500"></span> Clear
-                        reporting executives understand</li>
-                </ul>
-            </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MISSION / VISION / VALUES ─────────────── -->
+  <section class="section" style="background:var(--bg);position:relative;z-index:1;">
+    <div class="container">
+
+      <div class="reveal" style="max-width:560px;margin-bottom:3rem;">
+        <p class="eyebrow" style="margin-bottom:0.75rem;">Foundation</p>
+        <h2 class="section-h2">What drives us.</h2>
+      </div>
+
+      <div class="three-col" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem;">
+
+        <!-- Mission -->
+        <div class="card reveal reveal-d1" id="mission">
+          <div class="card-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+            </svg>
+          </div>
+          <div style="font-family:'DM Mono',monospace;font-size:0.7rem;color:rgba(59,130,246,0.7);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.625rem;">Mission</div>
+          <h3 style="font-size:1.05rem;font-weight:600;letter-spacing:-0.01em;margin:0 0 0.875rem;">Our Mission</h3>
+          <p style="font-size:0.875rem;color:var(--muted);line-height:1.7;margin:0;font-weight:300;">
+            Helping organizations establish actionable, preemptive security processes and technology that empowers their workforce to make sound decisions — before threats become incidents.
+          </p>
         </div>
-    </section>
 
-    <!-- Mission / Vision / Values -->
-    <section class="section-lg bg-white/5">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="grid gap-6 md:grid-cols-3">
-                <article id="mission" class="reveal rounded-2xl border border-white/10 bg-ink p-6">
-                    <h3 class="font-semibold">Our Mission</h3>
-                    <p class="mt-2 text-sm text-white/70">
-                        Helping organizations establish actionable preemptive security processes & technology that
-                        empowers their workforce to make sound decisions.
-                    </p>
-                </article>
-                <article id="vision" class="reveal rounded-2xl border border-white/10 bg-ink p-6">
-                    <h3 class="font-semibold">Our Vision</h3>
-                    <p class="mt-2 text-sm text-white/70">
-                        To ensure that all customers and associates are postured to protect their digital data and
-                        infrastructure from bad actors and unfortunate events.
-                    </p>
-                </article>
-                <article id="values" class="reveal rounded-2xl border border-white/10 bg-ink p-6">
-                    <h3 class="font-semibold">Our Values</h3>
-                    <p class="mt-2 text-sm text-white/70">Integrity<br>Teamwork<br>Adaptability<br>Ethical
-                        Standards<br>Problem Solving</p>
-                </article>
-            </div>
+        <!-- Vision -->
+        <div class="card reveal reveal-d2" id="vision">
+          <div class="card-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
+          <div style="font-family:'DM Mono',monospace;font-size:0.7rem;color:rgba(59,130,246,0.7);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.625rem;">Vision</div>
+          <h3 style="font-size:1.05rem;font-weight:600;letter-spacing:-0.01em;margin:0 0 0.875rem;">Our Vision</h3>
+          <p style="font-size:0.875rem;color:var(--muted);line-height:1.7;margin:0;font-weight:300;">
+            To ensure that all customers and associates are postured to protect their digital data and infrastructure from bad actors and unfortunate events — with confidence, not just compliance.
+          </p>
         </div>
-    </section>
 
-    <!-- Team -->
-    <section id="team" class="section-lg">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="reveal">
-                <h2 class="text-3xl font-bold">Our Team</h2>
-                <p class="mt-3 text-white/70 max-w-2xl">Experienced defenders, researchers, and builders united by
-                    mission.</p>
+        <!-- Values -->
+        <div class="card reveal reveal-d3" id="values">
+          <div class="card-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+            </svg>
+          </div>
+          <div style="font-family:'DM Mono',monospace;font-size:0.7rem;color:rgba(59,130,246,0.7);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.625rem;">Values</div>
+          <h3 style="font-size:1.05rem;font-weight:600;letter-spacing:-0.01em;margin:0 0 1rem;">Our Values</h3>
+          <div style="display:flex;flex-direction:column;gap:0.5rem;">
+            <div style="display:flex;align-items:center;gap:0.625rem;font-size:0.875rem;color:rgba(250,250,250,0.7);font-weight:400;">
+              <span style="width:5px;height:5px;background:var(--accent);border-radius:50%;flex-shrink:0;"></span>Integrity
             </div>
-
-            <div class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                <!-- Member 1 -->
-                <article class="reveal rounded-2xl border border-white/10 bg-ink p-6 text-center">
-                    <img src="assets/img/DV_pfp.jpg" alt="Dr. T.J. Faulk"
-                        class="h-24 w-24 mx-auto rounded-full object-cover border-2 border-hawk-500">
-                    <h3 class="mt-4 font-semibold">Dr. T.J. Faulk</h3>
-                    <p class="text-sm text-white/70">Co-founder</p>
-                    <p class="mt-2 text-sm text-white/70">(CCISO | CCSP | CEH | CISM | CISSP | PMP)</p>
-                    <p class="mt-3 text-sm text-white/60 text-left">
-                        Over 32 years across Legal, Insurance, Military, Defense, Mass Media, and Financial sectors.
-                        19+ years in IT, Compliance, and Security, with extensive experience across networks, databases,
-                        data centers,
-                        airframes, and private/public cloud environments.
-                    </p>
-                </article>
-
-                <!-- Member 2 -->
-                <article class="reveal rounded-2xl border border-white/10 bg-ink p-6 text-center">
-                    <img src="assets/img/porsche.pfp.jpg" alt="Gregory Digsby"
-                        class="h-24 w-24 mx-auto rounded-full object-cover border-2 border-hawk-500">
-                    <h3 class="mt-4 font-semibold">Gregory Digsby</h3>
-                    <p class="text-sm text-white/70">Co-founder</p>
-                    <p class="mt-3 text-sm text-white/60 text-left">
-                        25+ years in systems integration and network analysis: design, management, security, and IDS.
-                        Deep Microsoft stack experience and strong background in disaster recovery and business
-                        continuity planning.
-                    </p>
-                </article>
-
-                <!-- Member 3 -->
-                <article class="reveal rounded-2xl border border-white/10 bg-ink p-6 text-center">
-                    <img src="assets/img/yami_pfp.jpg" alt="Thomas Faulk III"
-                        class="h-24 w-24 mx-auto rounded-full object-cover border-2 border-hawk-500">
-                    <h3 class="mt-4 font-semibold">Thomas Faulk III</h3>
-                    <p class="text-sm text-white/70">R&D Lead</p>
-                    <p class="mt-3 text-sm text-white/60 text-left">
-                        Leads research into emerging technologies to advance Hawk Cybersecurity’s capability set and
-                        delivery methods.
-                    </p>
-                </article>
+            <div style="display:flex;align-items:center;gap:0.625rem;font-size:0.875rem;color:rgba(250,250,250,0.7);font-weight:400;">
+              <span style="width:5px;height:5px;background:var(--accent);border-radius:50%;flex-shrink:0;"></span>Teamwork
             </div>
+            <div style="display:flex;align-items:center;gap:0.625rem;font-size:0.875rem;color:rgba(250,250,250,0.7);font-weight:400;">
+              <span style="width:5px;height:5px;background:var(--accent);border-radius:50%;flex-shrink:0;"></span>Adaptability
+            </div>
+            <div style="display:flex;align-items:center;gap:0.625rem;font-size:0.875rem;color:rgba(250,250,250,0.7);font-weight:400;">
+              <span style="width:5px;height:5px;background:var(--accent);border-radius:50%;flex-shrink:0;"></span>Ethical Standards
+            </div>
+            <div style="display:flex;align-items:center;gap:0.625rem;font-size:0.875rem;color:rgba(250,250,250,0.7);font-weight:400;">
+              <span style="width:5px;height:5px;background:var(--accent);border-radius:50%;flex-shrink:0;"></span>Problem Solving
+            </div>
+          </div>
         </div>
-    </section>
 
-    <!-- CTA Band -->
-    <section class="band bg-white/5">
-        <div class="band-inner">
-            <div
-                class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-                <div class="reveal">
-                    <h3 class="text-2xl font-bold">Want to learn more about our approach?</h3>
-                    <p class="mt-2 text-white/70">We’ll share how we align controls, streamline audits, and keep teams
-                        moving.</p>
-                </div>
-                <div class="reveal">
-                    <a href="contact.html"
-                        class="rounded-full bg-hawk-500 px-5 py-2.5 font-semibold shadow-glow hover:bg-hawk-600">Get a
-                        Security Review</a>
-                </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TEAM ───────────────────────────────────── -->
+  <section id="team" class="section" style="background:var(--surface);position:relative;z-index:1;">
+    <div class="container">
+
+      <div class="reveal" style="max-width:560px;margin-bottom:3rem;">
+        <p class="eyebrow" style="margin-bottom:0.75rem;">The Team</p>
+        <h2 class="section-h2">Experienced defenders,<br>researchers, and builders.</h2>
+        <p style="margin-top:1rem;color:var(--muted);line-height:1.7;font-size:0.95rem;font-weight:300;">United by mission and decades of combined experience across the most demanding security environments.</p>
+      </div>
+
+      <div class="three-col" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem;">
+
+        <!-- Member 1 -->
+        <div class="team-card reveal reveal-d1">
+          <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;">
+            <div class="avatar">TF</div>
+            <div>
+              <div style="font-weight:600;font-size:0.95rem;letter-spacing:-0.01em;">Dr. T.J. Faulk</div>
+              <div style="font-family:'DM Mono',monospace;font-size:0.7rem;color:rgba(59,130,246,0.7);letter-spacing:0.05em;text-transform:uppercase;margin-top:0.2rem;">Co-founder</div>
             </div>
+          </div>
+          <p style="font-size:0.875rem;color:var(--muted);line-height:1.65;margin:0 0 1.25rem;font-weight:300;">
+            Over 32 years across Legal, Insurance, Military, Defense, Mass Media, and Financial sectors. 19+ years in IT, Compliance, and Security with extensive experience across networks, databases, data centers, airframes, and private/public cloud environments.
+          </p>
+          <div style="padding-top:1.25rem;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:0.35rem;">
+            <span class="tag">CCISO</span>
+            <span class="tag">CCSP</span>
+            <span class="tag">CEH</span>
+            <span class="tag">CISM</span>
+            <span class="tag">CISSP</span>
+            <span class="tag">PMP</span>
+          </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="mt-12 border-t border-white/10">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid gap-10 md:grid-cols-5">
-                <div>
-                    <a href="index.html" class="flex items-center gap-2">
-                        <span class="text-lg font-semibold">Hawk Cybersecurity</span>
-                    </a>
-                    <p class="mt-4 text-sm text-white/60 max-w-xs">Practical security, clear outcomes, audit-ready
-                        evidence.</p>
-                    <a href="contact.html"
-                        class="mt-5 inline-block rounded-full bg-hawk-500 px-4 py-2 text-sm font-semibold shadow-glow hover:bg-hawk-600">
-                        Connect with Us
-                    </a>
-                </div>
-
-                <div>
-                    <h4 class="text-sm font-semibold text-white/80">Solutions</h4>
-                    <ul class="mt-3 space-y-2 text-sm text-white/70">
-                        <li><a class="hover:text-white" href="solutions.html">Compliance & Experience</a></li>
-                        <li><a class="hover:text-white" href="solutions.html#tech">Technology & Tools</a></li>
-                        <li><a class="hover:text-white" href="solutions.html#sdlc">Secure SDLC</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-sm font-semibold text-white/80">Industry</h4>
-                    <ul class="mt-3 space-y-2 text-sm text-white/70">
-                        <li><a class="hover:text-white" href="industry.html#government">Government & Public</a></li>
-                        <li><a class="hover:text-white" href="industry.html#finance">Financial Services</a></li>
-                        <li><a class="hover:text-white" href="industry.html#manufacturing">Manufacturing & OT</a></li>
-                        <li><a class="hover:text-white" href="industry.html#energy">Energy & Infrastructure</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-sm font-semibold text-white/80">Insight</h4>
-                    <ul class="mt-3 space-y-2 text-sm text-white/70">
-                        <li><a class="hover:text-white" href="insight.html#secure-sdlc">Secure SDLC</a></li>
-                        <li><a class="hover:text-white" href="insight.html#governance">AI Governance</a></li>
-                        <li><a class="hover:text-white" href="insight.html#threat">Threat Intelligence</a></li>
-                        <li><a class="hover:text-white" href="insight.html#partners">Partners</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-sm font-semibold text-white/80">Company</h4>
-                    <ul class="mt-3 space-y-2 text-sm text-white/70">
-                        <li><a class="hover:text-white" href="company.html#mission">Mission</a></li>
-                        <li><a class="hover:text-white" href="company.html#vision">Vision</a></li>
-                        <li><a class="hover:text-white" href="company.html#values">Values</a></li>
-                        <li><a class="hover:text-white" href="company.html#team">Team</a></li>
-                    </ul>
-                </div>
+        <!-- Member 2 -->
+        <div class="team-card reveal reveal-d2">
+          <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;">
+            <div class="avatar">GD</div>
+            <div>
+              <div style="font-weight:600;font-size:0.95rem;letter-spacing:-0.01em;">Gregory Digsby</div>
+              <div style="font-family:'DM Mono',monospace;font-size:0.7rem;color:rgba(59,130,246,0.7);letter-spacing:0.05em;text-transform:uppercase;margin-top:0.2rem;">Co-founder</div>
             </div>
-
-            <div
-                class="mt-10 border-t border-white/10 pt-6 text-sm text-white/60 flex flex-wrap items-center justify-between gap-4">
-                <p>© <span id="y"></span> Hawk Cybersecurity. All rights reserved.</p>
-                <div class="flex gap-4">
-                    <a href="#" class="hover:text-white">Privacy</a>
-                    <a href="#" class="hover:text-white">Terms</a>
-                    <a href="#" class="hover:text-white">Status</a>
-                </div>
-            </div>
+          </div>
+          <p style="font-size:0.875rem;color:var(--muted);line-height:1.65;margin:0 0 1.25rem;font-weight:300;">
+            25+ years in systems integration and network analysis — design, management, security, and IDS. Deep Microsoft stack experience with a strong background in disaster recovery and business continuity planning.
+          </p>
+          <div style="padding-top:1.25rem;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:0.35rem;">
+            <span class="tag">Network Security</span>
+            <span class="tag">IDS</span>
+            <span class="tag">Microsoft Stack</span>
+            <span class="tag">DR/BCP</span>
+          </div>
         </div>
-    </footer>
 
-    <!-- Scripts -->
-    <script>
-        // Year in footer
-        const yEl = document.getElementById('y');
-        if (yEl) yEl.textContent = new Date().getFullYear();
+        <!-- Member 3 -->
+        <div class="team-card reveal reveal-d3">
+          <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;">
+            <div class="avatar">TF</div>
+            <div>
+              <div style="font-weight:600;font-size:0.95rem;letter-spacing:-0.01em;">Thomas Faulk III</div>
+              <div style="font-family:'DM Mono',monospace;font-size:0.7rem;color:rgba(59,130,246,0.7);letter-spacing:0.05em;text-transform:uppercase;margin-top:0.2rem;">R&amp;D Lead</div>
+            </div>
+          </div>
+          <p style="font-size:0.875rem;color:var(--muted);line-height:1.65;margin:0 0 1.25rem;font-weight:300;">
+            Leads research into emerging technologies to advance Hawk Cybersecurity's capability set and delivery methods — focused on AI, automation, and next-generation security tooling.
+          </p>
+          <div style="padding-top:1.25rem;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:0.35rem;">
+            <span class="tag">R&amp;D</span>
+            <span class="tag">AI Security</span>
+            <span class="tag">Automation</span>
+            <span class="tag">Emerging Tech</span>
+          </div>
+        </div>
 
-        // Mobile nav toggle
-        const navToggle = document.getElementById('navToggle');
-        const mobileNav = document.getElementById('mobileNav');
-        navToggle?.addEventListener('click', () => {
-            const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-            navToggle.setAttribute('aria-expanded', String(!expanded));
-            mobileNav.classList.toggle('hidden');
-        });
+      </div>
+    </div>
+  </section>
 
-        // Reveal-on-scroll
-        (function () {
-            const els = document.querySelectorAll('.reveal');
-            if (!('IntersectionObserver' in window) || !els.length) return els.forEach(el => el.classList.add('is-in'));
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
-            }, { threshold: 0.15 });
-            els.forEach(el => io.observe(el));
-        })();
-    </script>
+  <!-- ── CTA BANNER ─────────────────────────────── -->
+  <section class="section" style="background:var(--bg);position:relative;z-index:1;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(59,130,246,0.07) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+    <div class="reveal" style="position:relative;z-index:1;max-width:640px;margin:0 auto;padding:0 1.5rem;text-align:center;">
+      <h2 class="section-h2" style="margin-bottom:1rem;">
+        Want to learn more<br>about our approach?
+      </h2>
+      <p style="color:var(--muted);font-size:0.95rem;line-height:1.7;font-weight:300;margin-bottom:2rem;">
+        We'll walk you through how we align controls, streamline audits, and keep your team moving without slowing them down.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
+        <a href="contact.html" class="btn-primary" style="font-size:0.95rem;padding:0.75rem 1.75rem;">Get a Security Review →</a>
+        <a href="solutions.html" class="btn-ghost" style="font-size:0.95rem;padding:0.75rem 1.75rem;">View Solutions</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────── -->
+  <footer style="border-top:1px solid var(--border);background:var(--surface);position:relative;z-index:1;">
+    <div style="max-width:1200px;margin:0 auto;padding:3.5rem 1.5rem 2rem;">
+      <div class="footer-grid" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:2rem;">
+
+        <div>
+          <a href="index.html" style="display:inline-flex;align-items:center;gap:0.625rem;text-decoration:none;margin-bottom:1rem;">
+            <svg width="24" height="24" viewBox="0 0 26 26" fill="none">
+              <rect width="26" height="26" rx="6" fill="rgba(59,130,246,0.15)" stroke="rgba(59,130,246,0.35)" stroke-width="1"/>
+              <path d="M7 18L13 7L19 18H15.5L13 13.5L10.5 18H7Z" fill="#60A5FA"/>
+            </svg>
+            <span style="font-weight:600;font-size:0.9rem;color:var(--text);">Hawk Cybersecurity</span>
+          </a>
+          <p style="font-size:0.82rem;color:rgba(250,250,250,0.4);line-height:1.65;max-width:220px;font-weight:300;">Practical security, clear outcomes, audit-ready evidence.</p>
+          <a href="contact.html" class="btn-primary" style="margin-top:1.25rem;font-size:0.82rem;padding:0.5rem 1rem;">Connect with Us</a>
+        </div>
+
+        <div>
+          <h4 style="font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(250,250,250,0.35);margin:0 0 0.875rem;font-family:'DM Mono',monospace;">Solutions</h4>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
+            <li><a href="solutions.html">Compliance &amp; Experience</a></li>
+            <li><a href="solutions.html#tech">Technology &amp; Tools</a></li>
+            <li><a href="solutions.html#sdlc">Secure SDLC</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(250,250,250,0.35);margin:0 0 0.875rem;font-family:'DM Mono',monospace;">Industry</h4>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
+            <li><a href="industry.html#government">Government &amp; Public</a></li>
+            <li><a href="industry.html#finance">Financial Services</a></li>
+            <li><a href="industry.html#manufacturing">Manufacturing &amp; OT</a></li>
+            <li><a href="industry.html#energy">Energy &amp; Infrastructure</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(250,250,250,0.35);margin:0 0 0.875rem;font-family:'DM Mono',monospace;">Insight</h4>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
+            <li><a href="insight.html#governance">AI Governance</a></li>
+            <li><a href="insight.html#threat">Threat Intelligence</a></li>
+            <li><a href="insight.html#partners">Partners</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(250,250,250,0.35);margin:0 0 0.875rem;font-family:'DM Mono',monospace;">Company</h4>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
+            <li><a href="#mission">Mission</a></li>
+            <li><a href="#vision">Vision</a></li>
+            <li><a href="#values">Values</a></li>
+            <li><a href="#team">Team</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;">
+        <p style="font-size:0.78rem;color:rgba(250,250,250,0.3);margin:0;">© <span id="y"></span> Hawk Cybersecurity. All rights reserved.</p>
+        <div style="display:flex;gap:1.25rem;">
+          <a href="#" style="font-size:0.78rem;">Privacy</a>
+          <a href="#" style="font-size:0.78rem;">Terms</a>
+          <a href="#" style="font-size:0.78rem;">Status</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── SCRIPTS ────────────────────────────────── -->
+  <script>
+    const y = document.getElementById('y');
+    if (y) y.textContent = new Date().getFullYear();
+
+    const toggle = document.getElementById('navToggle');
+    const mNav = document.getElementById('mobileNav');
+    toggle?.addEventListener('click', () => {
+      const open = mNav.style.display === 'flex';
+      mNav.style.display = open ? 'none' : 'flex';
+      toggle.setAttribute('aria-expanded', String(!open));
+    });
+
+    (function () {
+      const els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) { els.forEach(el => el.classList.add('is-in')); return; }
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+      els.forEach(el => io.observe(el));
+    })();
+  </script>
 </body>
-
 </html>

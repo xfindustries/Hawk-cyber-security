@@ -2,463 +2,731 @@
 <html lang="en" class="scroll-smooth">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Insight — Hawk Cybersecurity</title>
-    <meta name="description"
-        content="Hawk Cybersecurity insights: Secure SDLC, AI Governance, Threat Intelligence, and partners.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
-                    colors: {
-                        hawk: {
-                            50: '#EFF6FF',
-                            100: '#DBEAFE',
-                            200: '#BFDBFE',
-                            300: '#93C5FD',
-                            400: '#60A5FA',
-                            500: '#3B82F6',   /* Primary blue accent */
-                            600: '#2563EB',
-                            700: '#1D4ED8',
-                            800: '#1E40AF',
-                            900: '#1E3A8A'
-                        },
-                        ink: '#181A1B',     /* panels and cards */
-                        slate: '#0B0C0E',   /* main background */
-                    },
-                    boxShadow: { glow: '0 0 40px rgba(59,130,246,.15)' }
-                }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Insight — Hawk Cybersecurity</title>
+  <meta name="description" content="Hawk Cybersecurity insights: AI Governance, Threat Intelligence, and partners.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['DM Sans', 'ui-sans-serif', 'system-ui'],
+            mono: ['DM Mono', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            hawk: {
+              50: '#EFF6FF', 100: '#DBEAFE', 200: '#BFDBFE', 300: '#93C5FD',
+              400: '#60A5FA', 500: '#3B82F6', 600: '#2563EB', 700: '#1D4ED8',
+              800: '#1E40AF', 900: '#1E3A8A'
             }
+          }
         }
-    </script>
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --bg: #09090B;
+      --surface: #111113;
+      --surface-2: #18181B;
+      --text: #FAFAFA;
+      --muted: rgba(250, 250, 250, 0.55);
+      --border: rgba(250, 250, 250, 0.08);
+      --accent: #3B82F6;
+      --accent-dim: rgba(59, 130, 246, 0.12);
+      --accent-glow: rgba(59, 130, 246, 0.25);
+    }
 
-    <style>
-        body {
-            background-color: #0B0C0E;
-            color: #F3F4F6;
-        }
+    * { box-sizing: border-box; }
 
-        .grid-bg {
-            background-image:
-                linear-gradient(rgba(255, 255, 255, .04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, .04) 1px, transparent 1px);
-            background-size: 32px 32px;
-            mask-image: radial-gradient(ellipse at 50% 20%, black 25%, transparent 70%);
-        }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', ui-sans-serif, system-ui;
+      -webkit-font-smoothing: antialiased;
+      margin: 0;
+    }
 
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
 
-        /* Section rhythm */
-        .section {
-            padding-top: 4.5rem;
-            padding-bottom: 4.5rem;
-            scroll-margin-top: 6rem;
-        }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .radial-fade {
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 80%);
+    }
 
-        .section-lg {
-            padding-top: 6rem;
-            padding-bottom: 6rem;
-        }
+    /* Nav */
+    .nav-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(250,250,250,0.6);
+      padding: 0.4rem 0.75rem;
+      border-radius: 0.5rem;
+      transition: color 0.2s, background-color 0.2s;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+    }
+    .nav-link:hover {
+      color: var(--text);
+      background-color: rgba(255,255,255,0.06);
+    }
 
-        .section-xl {
-            padding-top: 8rem;
-            padding-bottom: 8rem;
-        }
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 0.6rem 1.25rem;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+      letter-spacing: 0.01em;
+      box-shadow: 0 0 24px var(--accent-glow);
+    }
+    .btn-primary:hover {
+      background: #2563EB;
+      transform: translateY(-1px);
+      box-shadow: 0 0 36px var(--accent-glow);
+    }
 
-        /* Edge band */
-        .band {
-            position: relative;
-            padding: 0;
-        }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: transparent;
+      color: rgba(250,250,250,0.7);
+      font-weight: 500;
+      font-size: 0.875rem;
+      padding: 0.6rem 1.25rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.25);
+      color: #fff;
+      background: rgba(255,255,255,0.04);
+    }
 
-        .band .band-inner {
-            margin: 0 auto;
-            max-width: 80rem;
-            padding: 3rem 1rem;
-        }
+    /* Pills & tags */
+    .stat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent-dim);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 9999px;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #93C5FD;
+      font-family: 'DM Mono', monospace;
+    }
 
-        /* Reveal-on-scroll */
-        .reveal {
-            opacity: 0;
-            transform: translateY(14px);
-            transition: opacity .6s ease, transform .6s ease;
-        }
+    .tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 0.35rem;
+      padding: 0.2rem 0.6rem;
+      font-size: 0.72rem;
+      font-family: 'DM Mono', monospace;
+      color: rgba(250,250,250,0.55);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
 
-        .reveal.is-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .jump-chip {
+      display: inline-block;
+      padding: 0.45rem 1rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: rgba(250,250,250,0.6);
+      background: rgba(255,255,255,0.03);
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      text-decoration: none;
+    }
+    .jump-chip:hover {
+      border-color: rgba(59,130,246,0.4);
+      color: #93C5FD;
+      background: rgba(59,130,246,0.07);
+    }
 
-        .reveal-slow {
-            transition-duration: .9s;
-        }
+    /* Insight section block */
+    .insight-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
 
-        .reveal-right {
-            transform: translateX(-18px);
-        }
+    /* Cards */
+    .card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.75rem;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .card:hover {
+      border-color: rgba(59,130,246,0.22);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    }
+    .card:hover::before { opacity: 1; }
 
-        .reveal-left {
-            transform: translateX(18px);
-        }
+    .card-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: var(--accent-dim);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 0.625rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      flex-shrink: 0;
+    }
 
-        .reveal-right.is-in,
-        .reveal-left.is-in {
-            transform: translateX(0);
-        }
+    /* Check list */
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.625rem;
+      font-size: 0.875rem;
+      color: rgba(250,250,250,0.6);
+      line-height: 1.55;
+      font-weight: 300;
+      padding: 0.35rem 0;
+    }
+    .check-item svg { flex-shrink: 0; margin-top: 0.15rem; }
 
-        @media (prefers-reduced-motion: reduce) {
+    /* Partner card */
+    .partner-card {
+      display: block;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.75rem;
+      text-decoration: none;
+      transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .partner-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .partner-card:hover {
+      border-color: rgba(59,130,246,0.3);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+      transform: translateY(-2px);
+    }
+    .partner-card:hover::before { opacity: 1; }
 
-            .reveal,
-            .reveal-slow,
-            .reveal-right,
-            .reveal-left {
-                opacity: 1 !important;
-                transform: none !important;
-                transition: none !important;
-            }
-        }
+    /* Eyebrow */
+    .eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.85;
+    }
 
-        /* Nav tab hover-only animation */
-        .nav-tab {
-            border-radius: .5rem;
-            padding: .5rem .75rem;
-            transition: background-color .25s ease, box-shadow .25s ease, transform .25s ease;
-        }
+    /* Headings */
+    .hero-h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+    .section-h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, #ffffff 0%, #93C5FD 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-        .nav-tab:hover {
-            background-color: rgba(59, 130, 246, 0.08);
-            /* subtle blue hover */
-            box-shadow: 0 0 24px rgba(59, 130, 246, 0.15);
-            transform: translateY(-1px);
-        }
+    /* Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.is-in { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.05s; }
+    .reveal-d2 { transition-delay: 0.12s; }
+    .reveal-d3 { transition-delay: 0.19s; }
 
-        .nav-tab:focus-visible {
-            outline: 2px solid rgba(255, 255, 255, 0.35);
-            outline-offset: 2px;
-        }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
+    }
 
-        /* Optional image hover float */
-        .img-float {
-            transition: transform .35s ease, box-shadow .35s ease;
-        }
+    .section { padding: 5rem 0; scroll-margin-top: 5rem; }
+    .section-sm { padding: 3.5rem 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
-        .img-float:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
-        }
-    </style>
+    footer a { color: rgba(250,250,250,0.5); text-decoration: none; transition: color 0.2s; font-size: 0.875rem; }
+    footer a:hover { color: var(--text); }
+
+    @media (max-width: 640px) {
+      .hidden-mobile { display: none !important; }
+      .show-mobile { display: flex !important; }
+    }
+    @media (min-width: 641px) {
+      .show-mobile { display: none !important; }
+    }
+    @media (max-width: 768px) {
+      .insight-block { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+      .two-col { grid-template-columns: 1fr !important; }
+      .footer-grid { grid-template-columns: 1fr 1fr !important; }
+    }
+    @media (max-width: 520px) {
+      .footer-grid { grid-template-columns: 1fr !important; }
+    }
+  </style>
 </head>
 
-<body class="bg-slate text-white antialiased">
+<body>
 
-    <!-- Header -->
-    <header class="sticky top-0 z-40 w-full backdrop-blur supports-[backdrop-filter]:bg-slate/60">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="flex h-16 items-center justify-between">
-                <a href="index.html" class="flex items-center gap-2">
-                    <span class="text-lg font-semibold">Hawk Cybersecurity</span>
-                </a>
+  <!-- ── HEADER ──────────────────────────────────── -->
+  <header style="position:sticky;top:0;z-index:50;background:rgba(9,9,11,0.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);">
+    <div style="max-width:1280px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:60px;">
 
-                <!-- Desktop nav -->
-                <nav class="hidden sm:flex items-center gap-2">
-                    <a href="solutions.html" class="nav-tab text-sm hover:text-hawk-300">Solutions</a>
-                    <a href="industry.html" class="nav-tab text-sm hover:text-hawk-300">Industry</a>
-                    <a href="company.html" class="nav-tab text-sm hover:text-hawk-300">Company</a>
-                    <a href="insight.html" class="nav-tab text-sm hover:text-hawk-300">Insight</a>
-                </nav>
+      <a href="index.html" style="display:flex;align-items:center;gap:0.625rem;text-decoration:none;">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+          <rect width="26" height="26" rx="6" fill="rgba(59,130,246,0.15)" stroke="rgba(59,130,246,0.35)" stroke-width="1"/>
+          <path d="M7 18L13 7L19 18H15.5L13 13.5L10.5 18H7Z" fill="#60A5FA"/>
+        </svg>
+        <span style="font-weight:600;font-size:0.95rem;letter-spacing:-0.01em;color:var(--text);">Hawk Cybersecurity</span>
+      </a>
 
-                <!-- CTA (desktop) -->
-                <a href="contact.html"
-                    class="hidden sm:inline-block rounded-full bg-hawk-500 px-4 py-2 text-sm font-semibold shadow-glow hover:bg-hawk-600">
-                    Connect with Us
-                </a>
+      <nav style="display:flex;align-items:center;gap:0.25rem;" class="hidden-mobile">
+        <a href="solutions.html" class="nav-link">Solutions</a>
+        <a href="industry.html" class="nav-link">Industry</a>
+        <a href="company.html" class="nav-link">Company</a>
+        <a href="insight.html" class="nav-link" style="color:var(--text);background:rgba(255,255,255,0.06);">Insight</a>
+      </nav>
 
-                <!-- Mobile hamburger -->
-                <button id="navToggle"
-                    class="sm:hidden rounded-md border border-white/20 p-2 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40"
-                    aria-controls="mobileNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                        <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" />
-                    </svg>
-                </button>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <a href="contact.html" class="btn-primary hidden-mobile">Connect with Us</a>
+        <button id="navToggle" aria-label="Toggle navigation" style="background:transparent;border:1px solid var(--border);border-radius:0.5rem;padding:0.4rem 0.5rem;color:var(--text);cursor:pointer;display:none;" class="show-mobile">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="mobileNav" style="display:none;padding:0.75rem 1.5rem 1rem;border-top:1px solid var(--border);background:var(--surface);flex-direction:column;gap:0.25rem;">
+      <a href="solutions.html" class="nav-link" style="display:block;padding:0.6rem 0.5rem;">Solutions</a>
+      <a href="industry.html" class="nav-link" style="display:block;padding:0.6rem 0.5rem;">Industry</a>
+      <a href="company.html" class="nav-link" style="display:block;padding:0.6rem 0.5rem;">Company</a>
+      <a href="insight.html" class="nav-link" style="display:block;padding:0.6rem 0.5rem;">Insight</a>
+      <a href="contact.html" class="btn-primary" style="margin-top:0.75rem;justify-content:center;">Connect with Us</a>
+    </nav>
+  </header>
+
+  <!-- ── HERO ───────────────────────────────────── -->
+  <section style="position:relative;padding:6rem 1.5rem 5rem;overflow:hidden;">
+    <div class="grid-bg radial-fade" style="position:absolute;inset:0;z-index:0;"></div>
+    <div style="position:absolute;top:-5%;right:5%;width:600px;height:600px;background:radial-gradient(circle,rgba(59,130,246,0.08) 0%,transparent 65%);z-index:0;pointer-events:none;"></div>
+
+    <div style="position:relative;z-index:2;max-width:860px;margin:0 auto;">
+      <div class="reveal" style="margin-bottom:1.5rem;">
+        <span class="stat-pill">Research &amp; Perspective</span>
+      </div>
+
+      <h1 class="hero-h1 reveal reveal-d1">
+        <span class="text-gradient">At the intersection</span><br>
+        <span style="color:rgba(250,250,250,0.75);font-weight:300;">of security and AI.</span>
+      </h1>
+
+      <p class="reveal reveal-d2" style="margin-top:1.25rem;font-size:1.05rem;line-height:1.7;color:rgba(250,250,250,0.6);max-width:560px;font-weight:300;">
+        Practical research, emerging threat analysis, and AI governance thinking — built for security practitioners and the leaders who rely on them.
+      </p>
+
+      <div class="reveal reveal-d3" style="margin-top:2rem;display:flex;flex-wrap:wrap;gap:0.5rem;">
+        <a href="#governance" class="jump-chip">AI Governance</a>
+        <a href="#threat" class="jump-chip">Threat Intelligence</a>
+        <a href="#partners" class="jump-chip">Partners</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── AI GOVERNANCE ──────────────────────────── -->
+  <section id="governance" class="section" style="background:var(--surface);position:relative;z-index:1;">
+    <div class="container">
+      <div class="insight-block">
+
+        <!-- Text -->
+        <div class="reveal">
+          <p class="eyebrow" style="margin-bottom:0.75rem;">AI Governance</p>
+          <h2 class="section-h2" style="margin-bottom:1rem;">Responsible AI,<br>operationalized.</h2>
+          <p style="color:var(--muted);line-height:1.7;font-size:0.95rem;font-weight:300;margin-bottom:1.75rem;">
+            As AI becomes embedded in workflows, we focus on model risk management, policy controls, and auditable usage — balancing innovation with safety and compliance obligations.
+          </p>
+          <div style="display:flex;flex-direction:column;margin-bottom:1.75rem;">
+            <div class="check-item">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Usage policies, data classification, and human-in-the-loop review
             </div>
+            <div class="check-item">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Red-teaming and evaluation — jailbreak resistance, privacy, bias
+            </div>
+            <div class="check-item">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Traceability and logging for audit and incident response
+            </div>
+            <div class="check-item">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Model risk management frameworks aligned to NIST AI RMF
+            </div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.35rem;">
+            <span class="tag">NIST AI RMF</span>
+            <span class="tag">Model Risk</span>
+            <span class="tag">Red-teaming</span>
+            <span class="tag">AI Audit</span>
+          </div>
         </div>
 
-        <!-- Mobile nav -->
-        <nav id="mobileNav" class="sm:hidden hidden border-t border-white/10">
-            <div class="px-4 py-3 flex flex-col gap-2">
-                <a href="solutions.html" class="nav-tab block">Solutions</a>
-                <a href="industry.html" class="nav-tab block">Industry</a>
-                <a href="company.html" class="nav-tab block">Company</a>
-                <a href="insight.html" class="nav-tab block">Insight</a>
-                <a href="contact.html"
-                    class="mt-2 inline-block rounded-full bg-hawk-500 px-4 py-2 text-sm font-semibold hover:bg-hawk-600">
-                    Connect with Us
-                </a>
+        <!-- Cards column -->
+        <div class="reveal reveal-d1" style="display:flex;flex-direction:column;gap:1rem;">
+          <div class="card">
+            <div class="card-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>
+              </svg>
             </div>
-        </nav>
-    </header>
-
-    <!-- Hero -->
-    <section class="relative overflow-hidden">
-        <div class="absolute inset-0 grid-bg"></div>
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
-            <h1 class="reveal text-4xl font-extrabold tracking-tight md:text-5xl">Insights</h1>
-            <p class="reveal reveal-slow mt-4 text-lg text-white/80 max-w-3xl">
-                Practical research and collaboration at the intersection of cybersecurity and AI.
-            </p>
-            <div class="reveal mt-8 flex flex-wrap gap-3">
-                <!-- <a href="#secure-sdlc"
-                    class="rounded-full border border-white/20 px-5 py-2.5 font-semibold hover:border-hawk-400">Secure
-                    SDLC</a> -->
-                <a href="#governance"
-                    class="rounded-full border border-white/20 px-5 py-2.5 font-semibold hover:border-hawk-400">AI
-                    Governance</a>
-                <a href="#threat"
-                    class="rounded-full border border-white/20 px-5 py-2.5 font-semibold hover:border-hawk-400">Threat
-                    Intelligence</a>
-                <a href="#partners"
-                    class="rounded-full border border-white/20 px-5 py-2.5 font-semibold hover:border-hawk-400">Partners</a>
+            <h3 style="font-size:0.95rem;font-weight:600;letter-spacing:-0.01em;margin:0 0 0.5rem;">Policy &amp; Controls</h3>
+            <p style="font-size:0.85rem;color:var(--muted);line-height:1.6;margin:0;font-weight:300;">Build enforceable AI usage policies with classification rules and approval workflows that scale with your organization.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+              </svg>
             </div>
+            <h3 style="font-size:0.95rem;font-weight:600;letter-spacing:-0.01em;margin:0 0 0.5rem;">Evaluation &amp; Testing</h3>
+            <p style="font-size:0.85rem;color:var(--muted);line-height:1.6;margin:0;font-weight:300;">Structured red-team exercises and automated evaluation pipelines to surface risk before models reach production.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+              </svg>
+            </div>
+            <h3 style="font-size:0.95rem;font-weight:600;letter-spacing:-0.01em;margin:0 0 0.5rem;">Audit &amp; Traceability</h3>
+            <p style="font-size:0.85rem;color:var(--muted);line-height:1.6;margin:0;font-weight:300;">Logging, lineage tracking, and audit-ready documentation so AI usage holds up under regulatory and internal scrutiny.</p>
+          </div>
         </div>
-    </section>
 
-    <!-- Secure SDLC
-    <section id="secure-sdlc" class="section-lg">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-10 md:grid-cols-2 items-center">
-            <figure class="reveal reveal-left">
-                <img src="assets/img/DV_pfp.jpg" alt="Secure CI/CD pipeline" loading="lazy"
-                    class="img-float w-full rounded-2xl border border-white/10 shadow-glow object-cover">
-                <figcaption class="mt-3 text-xs text-white/50">Security as guardrails in every stage of delivery.
-                </figcaption>
-            </figure>
+      </div>
+    </div>
+  </section>
 
-            <div class="reveal">
-                <h2 class="text-3xl font-bold">Secure SDLC</h2>
-                <p class="mt-4 text-white/70">We’re building developer-friendly guardrails that integrate
-                    SAST/DAST/IAST, SBOMs, and policy-as-code into CI/CD—so teams ship faster without blind spots.</p>
-                <ul class="mt-6 grid gap-3 text-sm text-white/70">
-                    <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-hawk-500"></span> PR
-                        gates and artifact attestations to block known risks</li>
-                    <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-hawk-500"></span>
-                        Standardized threat modeling + abuse-case libraries</li>
-                    <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-hawk-500"></span>
-                        Risk-based triage and developer ownership workflows</li>
-                </ul>
+  <!-- ── THREAT INTELLIGENCE ────────────────────── -->
+  <section id="threat" class="section" style="background:var(--bg);position:relative;z-index:1;">
+    <div class="container">
+      <div class="insight-block">
+
+        <!-- Cards column -->
+        <div class="reveal" style="display:flex;flex-direction:column;gap:1rem;">
+          <div class="card">
+            <div class="card-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
             </div>
+            <h3 style="font-size:0.95rem;font-weight:600;letter-spacing:-0.01em;margin:0 0 0.5rem;">Detection Engineering</h3>
+            <p style="font-size:0.85rem;color:var(--muted);line-height:1.6;margin:0;font-weight:300;">Detection-as-code libraries and enrichment pipelines that convert intel feeds into actionable SIEM/XDR content.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+              </svg>
+            </div>
+            <h3 style="font-size:0.95rem;font-weight:600;letter-spacing:-0.01em;margin:0 0 0.5rem;">MITRE ATT&amp;CK Mapping</h3>
+            <p style="font-size:0.85rem;color:var(--muted);line-height:1.6;margin:0;font-weight:300;">TTP mapping with coverage views so your team knows exactly where detections exist and where blind spots remain.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+              </svg>
+            </div>
+            <h3 style="font-size:0.95rem;font-weight:600;letter-spacing:-0.01em;margin:0 0 0.5rem;">SOC Enablement</h3>
+            <p style="font-size:0.85rem;color:var(--muted);line-height:1.6;margin:0;font-weight:300;">Auto-generated analyst reports, playbook integration, and executive narratives that cut triage time and improve handoffs.</p>
+          </div>
         </div>
-    </section> -->
 
-    <!-- AI Governance -->
-    <section id="governance" class="section-lg bg-white/5">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-10 md:grid-cols-2 items-center">
-            <div class="reveal">
-                <h2 class="text-3xl font-bold">AI Governance</h2>
-                <p class="mt-4 text-white/70">As AI becomes embedded in workflows, we focus on model risk management,
-                    policy controls, and auditable usage—balancing innovation with safety and compliance.</p>
-                <ul class="mt-6 list-disc pl-5 text-sm text-white/70 space-y-2">
-                    <li>Usage policies, data classification, and human-in-the-loop review</li>
-                    <li>Red-teaming & evaluation: jailbreak resistance, privacy, bias</li>
-                    <li>Traceability & logging for audit and incident response</li>
-                </ul>
+        <!-- Text -->
+        <div class="reveal reveal-d1">
+          <p class="eyebrow" style="margin-bottom:0.75rem;">Threat Intelligence</p>
+          <h2 class="section-h2" style="margin-bottom:1rem;">Signals to detections<br>to action.</h2>
+          <p style="color:var(--muted);line-height:1.7;font-size:0.95rem;font-weight:300;margin-bottom:1.75rem;">
+            We prototype workflows that fuse SIEM/XDR telemetry with curated intel — pushing actionable detections into SOC playbooks and automating the repetitive parts of the analyst workflow.
+          </p>
+          <div style="display:flex;flex-direction:column;margin-bottom:1.75rem;">
+            <div class="check-item">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Detection-as-code libraries and enrichment pipelines
             </div>
-
-            <figure class="reveal reveal-right order-first md:order-last">
-                <img src="assets/img/ai-gov.jpg" alt="AI policy and governance dashboard" loading="lazy"
-                    class="img-float w-full rounded-2xl border border-white/10 shadow-glow object-cover">
-                <figcaption class="mt-3 text-xs text-white/50">Operationalizing responsible AI.</figcaption>
-            </figure>
+            <div class="check-item">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              TTP mapping to MITRE ATT&amp;CK with coverage views
+            </div>
+            <div class="check-item">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Auto-generated reports and executive narratives
+            </div>
+            <div class="check-item">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Splunk and XDR content development
+            </div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.35rem;">
+            <span class="tag">MITRE ATT&amp;CK</span>
+            <span class="tag">SIEM</span>
+            <span class="tag">XDR</span>
+            <span class="tag">Detection-as-Code</span>
+          </div>
         </div>
-    </section>
 
-    <!-- Threat Intelligence -->
-    <section id="threat" class="section-lg">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-10 md:grid-cols-2 items-center">
-            <figure class="reveal reveal-left">
-                <img src="assets/img/porsche.pfp.jpg" alt="Threat intel visualization" loading="lazy"
-                    class="img-float w-full rounded-2xl border border-white/10 shadow-glow object-cover">
-                <figcaption class="mt-3 text-xs text-white/50">Signals → detections → action.</figcaption>
-            </figure>
+      </div>
+    </div>
+  </section>
 
-            <div class="reveal">
-                <h2 class="text-3xl font-bold">Threat Intelligence</h2>
-                <p class="mt-4 text-white/70">We’re prototyping workflows that fuse SIEM/XDR telemetry with curated
-                    intel to push actionable detections into SOC playbooks and automate the boring parts.</p>
-                <ul class="mt-6 grid gap-3 text-sm text-white/70">
-                    <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-hawk-500"></span>
-                        Detection-as-code libraries & enrichment pipelines</li>
-                    <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-hawk-500"></span> TTP
-                        mapping to MITRE ATT&CK with coverage views</li>
-                    <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-hawk-500"></span>
-                        Auto-generated reports & executive narratives</li>
-                </ul>
+  <!-- ── PARTNERS ───────────────────────────────── -->
+  <section id="partners" class="section" style="background:var(--surface);position:relative;z-index:1;">
+    <div class="container">
+
+      <div class="reveal" style="max-width:580px;margin-bottom:3rem;">
+        <p class="eyebrow" style="margin-bottom:0.75rem;">Partners</p>
+        <h2 class="section-h2">Specialized partners,<br>accelerated outcomes.</h2>
+        <p style="margin-top:1rem;color:var(--muted);line-height:1.7;font-size:0.95rem;font-weight:300;">
+          We collaborate with trusted firms that extend our reach across digital transformation, AI protection, and global technology partnerships.
+        </p>
+      </div>
+
+      <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;">
+
+        <a href="https://www.zeusconsulting.com/" target="_blank" rel="noopener" class="partner-card reveal reveal-d1">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:0.875rem;">
+            <div>
+              <div style="font-size:1rem;font-weight:600;letter-spacing:-0.01em;color:var(--text);margin-bottom:0.25rem;">Zeus Consulting</div>
+              <div style="font-family:'DM Mono',monospace;font-size:0.7rem;color:rgba(59,130,246,0.7);letter-spacing:0.06em;text-transform:uppercase;">Digital Transformation</div>
             </div>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(250,250,250,0.3)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:0.25rem;">
+              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+            </svg>
+          </div>
+          <p style="font-size:0.875rem;color:var(--muted);line-height:1.6;margin:0 0 1.25rem;font-weight:300;">
+            Strategic innovation and digital transformation consulting — helping organizations navigate technology-driven change with clarity and confidence.
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.35rem;">
+            <span class="tag">Strategy</span><span class="tag">Digital Transformation</span><span class="tag">Innovation</span>
+          </div>
+        </a>
+
+        <a href="https://www.purecipher.com/" target="_blank" rel="noopener" class="partner-card reveal reveal-d2">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:0.875rem;">
+            <div>
+              <div style="font-size:1rem;font-weight:600;letter-spacing:-0.01em;color:var(--text);margin-bottom:0.25rem;">Pure Cipher</div>
+              <div style="font-family:'DM Mono',monospace;font-size:0.7rem;color:rgba(59,130,246,0.7);letter-spacing:0.06em;text-transform:uppercase;">AI Protection</div>
+            </div>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(250,250,250,0.3)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:0.25rem;">
+              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+            </svg>
+          </div>
+          <p style="font-size:0.875rem;color:var(--muted);line-height:1.6;margin:0 0 1.25rem;font-weight:300;">
+            Specialized AI protection services focused on securing AI systems, models, and pipelines from adversarial threats and data exposure risks.
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.35rem;">
+            <span class="tag">AI Security</span><span class="tag">Model Protection</span><span class="tag">Adversarial ML</span>
+          </div>
+        </a>
+
+        <a href="https://www.innoquest.world/" target="_blank" rel="noopener" class="partner-card reveal reveal-d3">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:0.875rem;">
+            <div>
+              <div style="font-size:1rem;font-weight:600;letter-spacing:-0.01em;color:var(--text);margin-bottom:0.25rem;">Innoquest</div>
+              <div style="font-family:'DM Mono',monospace;font-size:0.7rem;color:rgba(59,130,246,0.7);letter-spacing:0.06em;text-transform:uppercase;">Global Partnerships</div>
+            </div>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(250,250,250,0.3)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:0.25rem;">
+              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+            </svg>
+          </div>
+          <p style="font-size:0.875rem;color:var(--muted);line-height:1.6;margin:0 0 1.25rem;font-weight:300;">
+            Technology-driven solutions and global partnerships that connect organizations with the right tools and expertise to drive innovation at scale.
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.35rem;">
+            <span class="tag">Global Tech</span><span class="tag">Partnerships</span><span class="tag">Innovation</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA BANNER ─────────────────────────────── -->
+  <section class="section" style="background:var(--bg);position:relative;z-index:1;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(59,130,246,0.07) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+    <div class="reveal" style="position:relative;z-index:1;max-width:640px;margin:0 auto;padding:0 1.5rem;text-align:center;">
+      <h2 class="section-h2" style="margin-bottom:1rem;">
+        Want to discuss what<br>we're building?
+      </h2>
+      <p style="color:var(--muted);font-size:0.95rem;line-height:1.7;font-weight:300;margin-bottom:2rem;">
+        Whether it's AI governance, threat detection workflows, or a research collaboration, we're always interested in connecting with practitioners who are thinking about the same problems.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
+        <a href="contact.html" class="btn-primary" style="font-size:0.95rem;padding:0.75rem 1.75rem;">Connect with Us →</a>
+        <a href="solutions.html" class="btn-ghost" style="font-size:0.95rem;padding:0.75rem 1.75rem;">View Solutions</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────── -->
+  <footer style="border-top:1px solid var(--border);background:var(--surface);position:relative;z-index:1;">
+    <div style="max-width:1200px;margin:0 auto;padding:3.5rem 1.5rem 2rem;">
+      <div class="footer-grid" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:2rem;">
+
+        <div>
+          <a href="index.html" style="display:inline-flex;align-items:center;gap:0.625rem;text-decoration:none;margin-bottom:1rem;">
+            <svg width="24" height="24" viewBox="0 0 26 26" fill="none">
+              <rect width="26" height="26" rx="6" fill="rgba(59,130,246,0.15)" stroke="rgba(59,130,246,0.35)" stroke-width="1"/>
+              <path d="M7 18L13 7L19 18H15.5L13 13.5L10.5 18H7Z" fill="#60A5FA"/>
+            </svg>
+            <span style="font-weight:600;font-size:0.9rem;color:var(--text);">Hawk Cybersecurity</span>
+          </a>
+          <p style="font-size:0.82rem;color:rgba(250,250,250,0.4);line-height:1.65;max-width:220px;font-weight:300;">Practical security, clear outcomes, audit-ready evidence.</p>
+          <a href="contact.html" class="btn-primary" style="margin-top:1.25rem;font-size:0.82rem;padding:0.5rem 1rem;">Connect with Us</a>
         </div>
-    </section>
 
-    <!-- Partners -->
-    <section id="partners" class="section-lg bg-white/5">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="reveal">
-                <h2 class="text-3xl font-bold">Partners</h2>
-                <p class="mt-3 text-white/70 max-w-2xl">We collaborate with specialized firms to accelerate
-                    transformation and deliver outcomes.</p>
-            </div>
-
-            <div class="mt-8 grid gap-6 md:grid-cols-2">
-                <a href="https://www.zeusconsulting.com/" target="_blank" rel="noopener"
-                    class="reveal rounded-2xl border border-white/10 bg-ink p-6 block hover:border-hawk-400 hover:bg-white/5">
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-lg font-semibold">Zeus Consulting</h3>
-                        <svg class="h-5 w-5 opacity-70" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path
-                                d="M12.293 2.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L14 5.414V17a1 1 0 11-2 0V5.414L9.707 7.707A1 1 0 018.293 6.293l4-4z" />
-                        </svg>
-                    </div>
-                    <p class="mt-2 text-sm text-white/70">Digital transformation and strategic innovation.</p>
-                </a>
-
-                <a href="https://www.purecipher.com/" target="_blank" rel="noopener"
-                    class="reveal rounded-2xl border border-white/10 bg-ink p-6 block hover:border-hawk-400 hover:bg-white/5">
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-lg font-semibold">Pure Cipher</h3>
-                        <svg class="h-5 w-5 opacity-70" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path
-                                d="M12.293 2.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L14 5.414V17a1 1 0 11-2 0V5.414L9.707 7.707A1 1 0 018.293 6.293l4-4z" />
-                        </svg>
-                    </div>
-                    <p class="mt-2 text-sm text-white/70">AI protection services.</p>
-                </a>
-
-                <!-- <a href="https://www.echoleafsystems.com/" target="_blank" rel="noopener"
-                    class="reveal rounded-2xl border border-white/10 bg-ink p-6 block hover:border-hawk-400 hover:bg-white/5">
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-lg font-semibold">Echo Leaf</h3>
-                        <svg class="h-5 w-5 opacity-70" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path
-                                d="M12.293 2.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L14 5.414V17a1 1 0 11-2 0V5.414L9.707 7.707A1 1 0 018.293 6.293l4-4z" />
-                        </svg>
-                    </div>
-                    <p class="mt-2 text-sm text-white/70">Cyber recovery and solutions.</p> -->
-                </a>
-
-                <a href="https://www.innoquest.world/" target="_blank" rel="noopener"
-                    class="reveal rounded-2xl border border-white/10 bg-ink p-6 block hover:border-hawk-400 hover:bg-white/5">
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-lg font-semibold">Innoquest</h3>
-                        <svg class="h-5 w-5 opacity-70" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path
-                                d="M12.293 2.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L14 5.414V17a1 1 0 11-2 0V5.414L9.707 7.707A1 1 0 018.293 6.293l4-4z" />
-                        </svg>
-                    </div>
-                    <p class="mt-2 text-sm text-white/70">Technology-driven solutions and global partnerships.</p>
-                </a>
-            </div>
+        <div>
+          <h4 style="font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(250,250,250,0.35);margin:0 0 0.875rem;font-family:'DM Mono',monospace;">Solutions</h4>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
+            <li><a href="solutions.html">Compliance &amp; Experience</a></li>
+            <li><a href="solutions.html#tech">Technology &amp; Tools</a></li>
+            <li><a href="solutions.html#sdlc">Secure SDLC</a></li>
+          </ul>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="mt-12 border-t border-white/10">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid gap-10 md:grid-cols-5">
-                <div>
-                    <a href="index.html" class="flex items-center gap-2">
-                        <span class="text-lg font-semibold">Hawk Cybersecurity</span>
-                    </a>
-                    <p class="mt-4 text-sm text-white/60 max-w-xs">Practical security, clear outcomes, audit-ready
-                        evidence.</p>
-                    <a href="contact.html"
-                        class="mt-5 inline-block rounded-full bg-hawk-500 px-4 py-2 text-sm font-semibold shadow-glow hover:bg-hawk-600">
-                        Connect with Us
-                    </a>
-                </div>
-
-                <div>
-                    <h4 class="text-sm font-semibold text-white/80">Solutions</h4>
-                    <ul class="mt-3 space-y-2 text-sm text-white/70">
-                        <li><a class="hover:text-white" href="solutions.html">Compliance & Experience</a></li>
-                        <li><a class="hover:text-white" href="solutions.html#tech">Technology & Tools</a></li>
-                        <li><a class="hover:text-white" href="solutions.html#sdlc">Secure SDLC</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-sm font-semibold text-white/80">Industry</h4>
-                    <ul class="mt-3 space-y-2 text-sm text-white/70">
-                        <li><a class="hover:text-white" href="industry.html#government">Government & Public</a></li>
-                        <li><a class="hover:text-white" href="industry.html#finance">Financial Services</a></li>
-                        <li><a class="hover:text-white" href="industry.html#manufacturing">Manufacturing & OT</a></li>
-                        <li><a class="hover:text-white" href="industry.html#energy">Energy & Infrastructure</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <div>
-                        <h4 class="text-sm font-semibold text-white/80">Insight</h4>
-                        <ul class="mt-3 space-y-2 text-sm text-white/70">
-                            <li><a class="hover:text-white" href="insight.html#secure-sdlc">Secure SDLC</a></li>
-                            <li><a class="hover:text-white" href="insight.html#governance">AI Governance</a></li>
-                            <li><a class="hover:text-white" href="insight.html#threat">Threat Intelligence</a></li>
-                            <li><a class="hover:text-white" href="insight.html#partners">Partners</a></li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 class="text-sm font-semibold text-white/80">Company</h4>
-                        <ul class="mt-3 space-y-2 text-sm text-white/70">
-                            <li><a class="hover:text-white" href="company.html#mission">Mission</a></li>
-                            <li><a class="hover:text-white" href="company.html#vision">Vision</a></li>
-                            <li><a class="hover:text-white" href="company.html#values">Values</a></li>
-                            <li><a class="hover:text-white" href="company.html#team">Team</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div
-                class="mt-10 border-t border-white/10 pt-6 text-sm text-white/60 flex flex-wrap items-center justify-between gap-4">
-                <p>© <span id="y"></span> Hawk Cybersecurity. All rights reserved.</p>
-                <div class="flex gap-4">
-                    <a href="#" class="hover:text-white">Privacy</a>
-                    <a href="#" class="hover:text-white">Terms</a>
-                    <a href="#" class="hover:text-white">Status</a>
-                </div>
-            </div>
+        <div>
+          <h4 style="font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(250,250,250,0.35);margin:0 0 0.875rem;font-family:'DM Mono',monospace;">Industry</h4>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
+            <li><a href="industry.html#government">Government &amp; Public</a></li>
+            <li><a href="industry.html#finance">Financial Services</a></li>
+            <li><a href="industry.html#manufacturing">Manufacturing &amp; OT</a></li>
+            <li><a href="industry.html#energy">Energy &amp; Infrastructure</a></li>
+          </ul>
         </div>
-    </footer>
 
-    <!-- Scripts -->
-    <script>
-        // Year in footer
-        const yEl = document.getElementById('y');
-        if (yEl) yEl.textContent = new Date().getFullYear();
+        <div>
+          <h4 style="font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(250,250,250,0.35);margin:0 0 0.875rem;font-family:'DM Mono',monospace;">Insight</h4>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
+            <li><a href="#governance">AI Governance</a></li>
+            <li><a href="#threat">Threat Intelligence</a></li>
+            <li><a href="#partners">Partners</a></li>
+          </ul>
+        </div>
 
-        // Mobile nav toggle
-        const navToggle = document.getElementById('navToggle');
-        const mobileNav = document.getElementById('mobileNav');
-        navToggle?.addEventListener('click', () => {
-            const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-            navToggle.setAttribute('aria-expanded', String(!expanded));
-            mobileNav.classList.toggle('hidden');
-        });
+        <div>
+          <h4 style="font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(250,250,250,0.35);margin:0 0 0.875rem;font-family:'DM Mono',monospace;">Company</h4>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
+            <li><a href="company.html#mission">Mission</a></li>
+            <li><a href="company.html#vision">Vision</a></li>
+            <li><a href="company.html#values">Values</a></li>
+            <li><a href="company.html#team">Team</a></li>
+          </ul>
+        </div>
 
-        // Reveal-on-scroll
-        (function () {
-            const els = document.querySelectorAll('.reveal');
-            if (!('IntersectionObserver' in window) || !els.length) return els.forEach(el => el.classList.add('is-in'));
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
-            }, { threshold: 0.15 });
-            els.forEach(el => io.observe(el));
-        })();
-    </script>
+      </div>
+
+      <div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;">
+        <p style="font-size:0.78rem;color:rgba(250,250,250,0.3);margin:0;">© <span id="y"></span> Hawk Cybersecurity. All rights reserved.</p>
+        <div style="display:flex;gap:1.25rem;">
+          <a href="#" style="font-size:0.78rem;">Privacy</a>
+          <a href="#" style="font-size:0.78rem;">Terms</a>
+          <a href="#" style="font-size:0.78rem;">Status</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── SCRIPTS ────────────────────────────────── -->
+  <script>
+    const y = document.getElementById('y');
+    if (y) y.textContent = new Date().getFullYear();
+
+    const toggle = document.getElementById('navToggle');
+    const mNav = document.getElementById('mobileNav');
+    toggle?.addEventListener('click', () => {
+      const open = mNav.style.display === 'flex';
+      mNav.style.display = open ? 'none' : 'flex';
+      toggle.setAttribute('aria-expanded', String(!open));
+    });
+
+    (function () {
+      const els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) { els.forEach(el => el.classList.add('is-in')); return; }
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+      els.forEach(el => io.observe(el));
+    })();
+  </script>
 </body>
-
 </html>

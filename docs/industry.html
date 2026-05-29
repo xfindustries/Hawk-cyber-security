@@ -5,88 +5,308 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Industry — Hawk Cybersecurity</title>
-    <meta name="description" content="Industries we serve with sector-specific cybersecurity expertise.">
+    <meta name="description"
+        content="Sector-specific cybersecurity expertise for government, financial services, manufacturing, energy, and more.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap"
         rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+                    fontFamily: {
+                        sans: ['DM Sans', 'ui-sans-serif', 'system-ui'],
+                        mono: ['DM Mono', 'ui-monospace', 'monospace'],
+                    },
                     colors: {
                         hawk: {
-                            50: '#EFF6FF',
-                            100: '#DBEAFE',
-                            200: '#BFDBFE',
-                            300: '#93C5FD',
-                            400: '#60A5FA',
-                            500: '#3B82F6',   /* Primary blue accent */
-                            600: '#2563EB',
-                            700: '#1D4ED8',
-                            800: '#1E40AF',
-                            900: '#1E3A8A'
-                        },
-                        ink: '#181A1B',     /* panels and cards */
-                        slate: '#0B0C0E',   /* main background */
-                    },
-                    boxShadow: { glow: '0 0 40px rgba(59,130,246,.15)' }
+                            50: '#EFF6FF', 100: '#DBEAFE', 200: '#BFDBFE', 300: '#93C5FD',
+                            400: '#60A5FA', 500: '#3B82F6', 600: '#2563EB', 700: '#1D4ED8',
+                            800: '#1E40AF', 900: '#1E3A8A'
+                        }
+                    }
                 }
             }
         }
     </script>
-
     <style>
-        body {
-            background-color: #0B0C0E;
-            color: #F3F4F6;
+        :root {
+            --bg: #09090B;
+            --surface: #111113;
+            --surface-2: #18181B;
+            --text: #FAFAFA;
+            --muted: rgba(250, 250, 250, 0.55);
+            --border: rgba(250, 250, 250, 0.08);
+            --accent: #3B82F6;
+            --accent-dim: rgba(59, 130, 246, 0.12);
+            --accent-glow: rgba(59, 130, 246, 0.25);
         }
 
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', ui-sans-serif, system-ui;
+            -webkit-font-smoothing: antialiased;
+            margin: 0;
+        }
+
+        /* Noise texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        /* Grid background */
         .grid-bg {
             background-image:
-                linear-gradient(rgba(255, 255, 255, .04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, .04) 1px, transparent 1px);
-            background-size: 32px 32px;
-            mask-image: radial-gradient(ellipse at 50% 20%, black 25%, transparent 70%);
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
 
-
-        /* Section rhythm */
-        .section {
-            padding-top: 4.5rem;
-            padding-bottom: 4.5rem;
-            scroll-margin-top: 6rem;
+        .radial-fade {
+            mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 80%);
         }
 
-        .section-lg {
-            padding-top: 6rem;
-            padding-bottom: 6rem;
+        /* Nav */
+        .nav-link {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: rgba(250, 250, 250, 0.6);
+            padding: 0.4rem 0.75rem;
+            border-radius: 0.5rem;
+            transition: color 0.2s, background-color 0.2s;
+            letter-spacing: 0.01em;
+            text-decoration: none;
         }
 
-        .section-xl {
-            padding-top: 8rem;
-            padding-bottom: 8rem;
+        .nav-link:hover {
+            color: var(--text);
+            background-color: rgba(255, 255, 255, 0.06);
         }
 
-        /* Edge band */
-        .band {
+        /* Buttons */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.875rem;
+            padding: 0.6rem 1.25rem;
+            border-radius: 9999px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+            letter-spacing: 0.01em;
+            box-shadow: 0 0 24px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            background: #2563EB;
+            transform: translateY(-1px);
+            box-shadow: 0 0 36px var(--accent-glow);
+        }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: transparent;
+            color: rgba(250, 250, 250, 0.7);
+            font-weight: 500;
+            font-size: 0.875rem;
+            padding: 0.6rem 1.25rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            cursor: pointer;
+            text-decoration: none;
+            transition: border-color 0.2s, color 0.2s, background 0.2s;
+        }
+
+        .btn-ghost:hover {
+            border-color: rgba(255, 255, 255, 0.25);
+            color: #fff;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        /* Tags / pills */
+        .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 0.35rem;
+            padding: 0.2rem 0.6rem;
+            font-size: 0.72rem;
+            font-family: 'DM Mono', monospace;
+            color: rgba(250, 250, 250, 0.55);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        .stat-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent-dim);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 9999px;
+            padding: 0.35rem 0.85rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #93C5FD;
+            font-family: 'DM Mono', monospace;
+        }
+
+        /* Jump-link chips */
+        .jump-chip {
+            display: inline-block;
+            padding: 0.45rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: rgba(250, 250, 250, 0.6);
+            background: rgba(255, 255, 255, 0.03);
+            transition: border-color 0.2s, color 0.2s, background 0.2s;
+            text-decoration: none;
+        }
+
+        .jump-chip:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            color: #93C5FD;
+            background: rgba(59, 130, 246, 0.07);
+        }
+
+        /* Industry cards */
+        .ind-card {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            scroll-margin-top: 5rem;
+            transition: border-color 0.25s, box-shadow 0.25s;
             position: relative;
-            padding: 0;
+            overflow: hidden;
         }
 
-        .band .band-inner {
-            margin: 0 auto;
-            max-width: 80rem;
-            padding: 3rem 1rem;
+        .ind-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
-        /* Reveal-on-scroll */
+        .ind-card:hover {
+            border-color: rgba(59, 130, 246, 0.22);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+        }
+
+        .ind-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: var(--accent-dim);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 0.625rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        /* Checklist items */
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.625rem;
+            font-size: 0.875rem;
+            color: rgba(250, 250, 250, 0.6);
+            line-height: 1.55;
+            font-weight: 300;
+            padding: 0.4rem 0;
+        }
+
+        .check-item svg {
+            flex-shrink: 0;
+            margin-top: 0.15rem;
+        }
+
+        /* Divider */
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 0;
+        }
+
+        /* Eyebrow label */
+        .eyebrow {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent);
+            opacity: 0.85;
+        }
+
+        /* Headings */
+        .hero-h1 {
+            font-size: clamp(2.4rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+        }
+
+        .section-h2 {
+            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            line-height: 1.15;
+        }
+
+        .card-h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin: 0 0 0.625rem;
+        }
+
+        /* Text gradient */
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #93C5FD 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Reveal animations */
         .reveal {
             opacity: 0;
-            transform: translateY(14px);
-            transition: opacity .6s ease, transform .6s ease;
+            transform: translateY(16px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
         }
 
         .reveal.is-in {
@@ -94,347 +314,673 @@
             transform: translateY(0);
         }
 
-        .reveal-slow {
-            transition-duration: .9s;
+        .reveal-d1 {
+            transition-delay: 0.05s;
         }
 
-        .reveal-right {
-            transform: translateX(-18px);
+        .reveal-d2 {
+            transition-delay: 0.12s;
         }
 
-        .reveal-left {
-            transform: translateX(18px);
+        .reveal-d3 {
+            transition-delay: 0.19s;
         }
 
-        .reveal-right.is-in,
-        .reveal-left.is-in {
-            transform: translateX(0);
+        .reveal-d4 {
+            transition-delay: 0.26s;
         }
 
         @media (prefers-reduced-motion: reduce) {
-
-            .reveal,
-            .reveal-slow,
-            .reveal-right,
-            .reveal-left {
+            .reveal {
+                animation: none !important;
+                transition: none !important;
                 opacity: 1 !important;
                 transform: none !important;
-                transition: none !important;
             }
         }
 
-        /* Nav tab hover-only animation */
-        .nav-tab {
-            border-radius: .5rem;
-            padding: .5rem .75rem;
-            transition: background-color .25s ease, box-shadow .25s ease, transform .25s ease;
+        /* Spacing */
+        .section {
+            padding: 5rem 0;
         }
 
-        .nav-tab:hover {
-            background-color: rgba(59, 130, 246, 0.08);
-            /* subtle blue hover */
-            box-shadow: 0 0 24px rgba(59, 130, 246, 0.15);
-            transform: translateY(-1px);
+        .section-sm {
+            padding: 3.5rem 0;
         }
 
-        .nav-tab:focus-visible {
-            outline: 2px solid rgba(255, 255, 255, 0.35);
-            outline-offset: 2px;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
         }
 
-        /* Optional image hover float */
-        .img-float {
-            transition: transform .35s ease, box-shadow .35s ease;
+        /* Footer links */
+        footer a {
+            color: rgba(250, 250, 250, 0.5);
+            text-decoration: none;
+            transition: color 0.2s;
+            font-size: 0.875rem;
         }
 
-        .img-float:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+        footer a:hover {
+            color: var(--text);
+        }
+
+        /* Responsive grids */
+        @media (max-width: 640px) {
+            .hidden-mobile {
+                display: none !important;
+            }
+
+            .show-mobile {
+                display: flex !important;
+            }
+        }
+
+        @media (min-width: 641px) {
+            .show-mobile {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .ind-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr !important;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .footer-grid {
+                grid-template-columns: 1fr !important;
+            }
         }
     </style>
 </head>
 
-<body class="bg-slate text-white antialiased">
+<body>
 
-    <!-- Header -->
-    <header class="sticky top-0 z-40 w-full backdrop-blur supports-[backdrop-filter]:bg-slate/60">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="flex h-16 items-center justify-between">
-                <a href="index.html" class="flex items-center gap-2">
-                    <span class="text-lg font-semibold">Hawk Cybersecurity</span>
-                </a>
+    <!-- ── HEADER ──────────────────────────────────── -->
+    <header
+        style="position:sticky;top:0;z-index:50;background:rgba(9,9,11,0.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);">
+        <div
+            style="max-width:1280px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:60px;">
 
-                <!-- Desktop nav -->
-                <nav class="hidden sm:flex items-center gap-2">
-                    <a href="solutions.html" class="nav-tab text-sm hover:text-hawk-300">Solutions</a>
-                    <a href="industry.html" class="nav-tab text-sm hover:text-hawk-300">Industry</a>
-                    <a href="company.html" class="nav-tab text-sm hover:text-hawk-300">Company</a>
-                    <a href="insight.html" class="nav-tab text-sm hover:text-hawk-300">Insight</a>
-                </nav>
+            <a href="index.html" style="display:flex;align-items:center;gap:0.625rem;text-decoration:none;">
+                <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="26" height="26" rx="6" fill="rgba(59,130,246,0.15)" stroke="rgba(59,130,246,0.35)"
+                        stroke-width="1" />
+                    <path d="M7 18L13 7L19 18H15.5L13 13.5L10.5 18H7Z" fill="#60A5FA" />
+                </svg>
+                <span style="font-weight:600;font-size:0.95rem;letter-spacing:-0.01em;color:var(--text);">Hawk
+                    Cybersecurity</span>
+            </a>
 
-                <!-- CTA (desktop) -->
-                <a href="contact.html"
-                    class="hidden sm:inline-block rounded-full bg-hawk-500 px-4 py-2 text-sm font-semibold shadow-glow hover:bg-hawk-600">
-                    Connect with Us
-                </a>
+            <nav style="display:flex;align-items:center;gap:0.25rem;" class="hidden-mobile">
+                <a href="solutions.html" class="nav-link">Solutions</a>
+                <a href="industry.html" class="nav-link"
+                    style="color:var(--text);background:rgba(255,255,255,0.06);">Industry</a>
+                <a href="company.html" class="nav-link">Company</a>
+                <a href="insight.html" class="nav-link">Insight</a>
+            </nav>
 
-                <!-- Mobile hamburger -->
-                <button id="navToggle"
-                    class="sm:hidden rounded-md border border-white/20 p-2 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40"
-                    aria-controls="mobileNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                        <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="2"
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+                <a href="contact.html" class="btn-primary hidden-mobile">Connect with Us</a>
+                <button id="navToggle" aria-label="Toggle navigation"
+                    style="background:transparent;border:1px solid var(--border);border-radius:0.5rem;padding:0.4rem 0.5rem;color:var(--text);cursor:pointer;display:none;"
+                    class="show-mobile">
+                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                        <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.75"
                             stroke-linecap="round" />
                     </svg>
                 </button>
             </div>
         </div>
 
-        <!-- Mobile nav -->
-        <nav id="mobileNav" class="sm:hidden hidden border-t border-white/10">
-            <div class="px-4 py-3 flex flex-col gap-2">
-                <a href="solutions.html" class="nav-tab block">Solutions</a>
-                <a href="industry.html" class="nav-tab block">Industry</a>
-                <a href="company.html" class="nav-tab block">Company</a>
-                <a href="insight.html" class="nav-tab block">Insight</a>
-                <a href="contact.html"
-                    class="mt-2 inline-block rounded-full bg-hawk-500 px-4 py-2 text-sm font-semibold hover:bg-hawk-600">
-                    Connect with Us
-                </a>
-            </div>
+        <nav id="mobileNav"
+            style="display:none;padding:0.75rem 1.5rem 1rem;border-top:1px solid var(--border);background:var(--surface);flex-direction:column;gap:0.25rem;">
+            <a href="solutions.html" class="nav-link" style="display:block;padding:0.6rem 0.5rem;">Solutions</a>
+            <a href="industry.html" class="nav-link" style="display:block;padding:0.6rem 0.5rem;">Industry</a>
+            <a href="company.html" class="nav-link" style="display:block;padding:0.6rem 0.5rem;">Company</a>
+            <a href="insight.html" class="nav-link" style="display:block;padding:0.6rem 0.5rem;">Insight</a>
+            <a href="contact.html" class="btn-primary" style="margin-top:0.75rem;justify-content:center;">Connect with
+                Us</a>
         </nav>
     </header>
 
-    <!-- Hero -->
-    <section class="relative overflow-hidden">
-        <div class="absolute inset-0 grid-bg"></div>
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
-            <h1 class="reveal text-4xl font-extrabold tracking-tight md:text-5xl">Industries</h1>
-            <p class="reveal reveal-slow mt-4 text-lg text-white/80 max-w-3xl">
-                Sector-specific controls and playbooks, tailored to your regulations and risk appetite.
+    <!-- ── HERO ───────────────────────────────────── -->
+    <section style="position:relative;padding:6rem 1.5rem 5rem;overflow:hidden;">
+        <div class="grid-bg radial-fade" style="position:absolute;inset:0;z-index:0;"></div>
+        <div
+            style="position:absolute;top:-5%;right:10%;width:600px;height:600px;background:radial-gradient(circle,rgba(59,130,246,0.08) 0%,transparent 65%);z-index:0;pointer-events:none;">
+        </div>
+
+        <div style="position:relative;z-index:2;max-width:860px;margin:0 auto;">
+            <div class="reveal" style="margin-bottom:1.5rem;">
+                <span class="stat-pill">6 Sectors Covered</span>
+            </div>
+
+            <h1 class="hero-h1 reveal reveal-d1">
+                <span class="text-gradient">Security built</span><br>
+                <span style="color:rgba(250,250,250,0.75);font-weight:300;">for your industry.</span>
+            </h1>
+
+            <p class="reveal reveal-d2"
+                style="margin-top:1.25rem;font-size:1.05rem;line-height:1.7;color:rgba(250,250,250,0.6);max-width:560px;font-weight:300;">
+                Every sector faces unique threats, regulatory demands, and operational constraints. We build security
+                programs shaped by your environment — not generic checklists.
             </p>
-            <div class="reveal mt-8 flex flex-wrap gap-3">
-                <a href="#government"
-                    class="rounded-full border border-white/20 px-5 py-2.5 font-semibold hover:border-hawk-400">Government
-                    & Public</a>
-                <a href="#finance"
-                    class="rounded-full border border-white/20 px-5 py-2.5 font-semibold hover:border-hawk-400">Financial
-                    Services</a>
-                <a href="#manufacturing"
-                    class="rounded-full border border-white/20 px-5 py-2.5 font-semibold hover:border-hawk-400">Manufacturing
-                    & OT</a>
-                <a href="#energy"
-                    class="rounded-full border border-white/20 px-5 py-2.5 font-semibold hover:border-hawk-400">Energy &
-                    Infrastructure</a>
+
+            <!-- Jump links -->
+            <div class="reveal reveal-d3" style="margin-top:2rem;display:flex;flex-wrap:wrap;gap:0.5rem;">
+                <a href="#government" class="jump-chip">Government &amp; Public</a>
+                <a href="#finance" class="jump-chip">Financial Services</a>
+                <a href="#manufacturing" class="jump-chip">Manufacturing &amp; OT</a>
+                <a href="#energy" class="jump-chip">Energy &amp; Infrastructure</a>
+                <a href="#logistics" class="jump-chip">Logistics</a>
+                <a href="#retail" class="jump-chip">Retail &amp; Consumer</a>
             </div>
         </div>
     </section>
 
-    <!-- Industries Grid -->
-    <section class="section-lg">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-
-            <!-- Intro -->
-            <div class="reveal max-w-3xl">
-                <p class="text-sm font-semibold uppercase tracking-[0.2em] text-hawk-300">
-                    Industries
-                </p>
-                <h2 class="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
-                    Security tailored to your sector, risks, and regulations.
-                </h2>
-                <p class="mt-4 text-white/70">
-                    Every industry faces unique threats and compliance demands. We build practical security programs
-                    aligned to your environment—not generic checklists.
+    <!-- ── PRIMARY INDUSTRIES ─────────────────────── -->
+    <section class="section" style="background:var(--surface);position:relative;z-index:1;">
+        <div class="container">
+            <div class="reveal" style="max-width:600px;margin-bottom:3rem;">
+                <p class="eyebrow" style="margin-bottom:0.75rem;">Core Verticals</p>
+                <h2 class="section-h2">Sector-specific controls<br>and compliance coverage.</h2>
+                <p style="margin-top:1rem;color:var(--muted);line-height:1.7;font-size:0.95rem;font-weight:300;">
+                    Our team brings direct experience across regulated industries, translating complex mandates into
+                    practical, defensible security programs.
                 </p>
             </div>
 
-            <!-- Cards -->
-            <div class="mt-12 grid gap-6 md:grid-cols-2">
+            <div class="ind-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;">
 
                 <!-- Government -->
-                <article id="government" class="reveal img-float rounded-2xl border border-white/10 bg-ink p-6">
-                    <h3 class="text-xl font-semibold">Government & Public Sector</h3>
-                    <p class="mt-3 text-sm text-white/70">
-                        Mission-critical environments with strict regulatory mandates and uptime requirements.
+                <div class="ind-card reveal reveal-d1" id="government">
+                    <div class="card-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.75"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 10v11M12 10v11M16 10v11" />
+                        </svg>
+                    </div>
+                    <h3 class="card-h3">Government &amp; Public Sector</h3>
+                    <p
+                        style="font-size:0.875rem;color:var(--muted);line-height:1.65;margin:0 0 1.25rem;font-weight:300;">
+                        Mission-critical environments with strict regulatory mandates, classification requirements, and
+                        continuous uptime demands.
                     </p>
-                    <ul class="mt-4 text-sm text-white/70 space-y-2">
-                        <li>• NIST 800-53 / 800-171, RMF, FedRAMP alignment</li>
-                        <li>• ATO support and continuous monitoring</li>
-                        <li>• Zero Trust and identity-based defense</li>
-                    </ul>
-                </article>
+                    <div style="display:flex;flex-direction:column;gap:0;">
+                        <div class="check-item">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            NIST 800-53 / 800-171 and RMF alignment
+                        </div>
+                        <div class="check-item">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            ATO support and continuous monitoring
+                        </div>
+                        <div class="check-item">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            FedRAMP readiness and authorization support
+                        </div>
+                        <div class="check-item">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Zero Trust and identity-based defense architectures
+                        </div>
+                    </div>
+                    <div
+                        style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:0.35rem;">
+                        <span class="tag">NIST 800-53</span><span class="tag">RMF</span><span
+                            class="tag">FedRAMP</span><span class="tag">Zero Trust</span>
+                    </div>
+                </div>
 
-                <!-- Finance -->
-                <article id="finance" class="reveal img-float rounded-2xl border border-white/10 bg-ink p-6">
-                    <h3 class="text-xl font-semibold">Financial Services</h3>
-                    <p class="mt-3 text-sm text-white/70">
-                        High-value targets requiring layered protection and strong fraud controls.
+                <!-- Financial Services -->
+                <div class="ind-card reveal reveal-d2" id="finance">
+                    <div class="card-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.75"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="7" width="20" height="14" rx="2" />
+                            <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M12 12v5M9 14.5h6" />
+                        </svg>
+                    </div>
+                    <h3 class="card-h3">Financial Services</h3>
+                    <p
+                        style="font-size:0.875rem;color:var(--muted);line-height:1.65;margin:0 0 1.25rem;font-weight:300;">
+                        High-value targets with layered regulatory obligations, fraud risk, and stringent data
+                        protection requirements.
                     </p>
-                    <ul class="mt-4 text-sm text-white/70 space-y-2">
-                        <li>• PCI DSS compliance and audit readiness</li>
-                        <li>• Fraud detection and transaction monitoring</li>
-                        <li>• Encryption and key management strategies</li>
-                    </ul>
-                </article>
+                    <div style="display:flex;flex-direction:column;gap:0;">
+                        <div class="check-item">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            PCI DSS compliance and audit readiness
+                        </div>
+                        <div class="check-item">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            GLBA safeguards and SOX controls alignment
+                        </div>
+                        <div class="check-item">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Fraud detection and transaction monitoring
+                        </div>
+                        <div class="check-item">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Encryption, key management, and data classification
+                        </div>
+                    </div>
+                    <div
+                        style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:0.35rem;">
+                        <span class="tag">PCI DSS</span><span class="tag">GLBA</span><span class="tag">SOX</span><span
+                            class="tag">FFIEC</span>
+                    </div>
+                </div>
 
                 <!-- Manufacturing -->
-                <article id="manufacturing" class="reveal img-float rounded-2xl border border-white/10 bg-ink p-6">
-                    <h3 class="text-xl font-semibold">Manufacturing & OT</h3>
-                    <p class="mt-3 text-sm text-white/70">
-                        Protect operational technology and reduce downtime in interconnected environments.
+                <div class="ind-card reveal reveal-d3" id="manufacturing">
+                    <div class="card-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.75"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 20h20M4 20V10l6-6 6 6v10" />
+                            <path d="M10 20v-5h4v5" />
+                        </svg>
+                    </div>
+                    <h3 class="card-h3">Manufacturing &amp; OT</h3>
+                    <p
+                        style="font-size:0.875rem;color:var(--muted);line-height:1.65;margin:0 0 1.25rem;font-weight:300;">
+                        Protecting operational technology and production continuity in environments where downtime has
+                        direct operational and safety consequences.
                     </p>
-                    <ul class="mt-4 text-sm text-white/70 space-y-2">
-                        <li>• OT segmentation and asset visibility</li>
-                        <li>• Vulnerability management for production systems</li>
-                        <li>• Supply chain and firmware security</li>
-                    </ul>
-                </article>
+                    <div style="display:flex;flex-direction:column;gap:0;">
+                        <div class="check-item">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            OT/ICS network segmentation and asset visibility
+                        </div>
+                        <div class="check-item">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Vulnerability management for production systems
+                        </div>
+                        <div class="check-item">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Supply chain and firmware integrity controls
+                        </div>
+                        <div class="check-item">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            IT/OT convergence risk strategy
+                        </div>
+                    </div>
+                    <div
+                        style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:0.35rem;">
+                        <span class="tag">IEC 62443</span><span class="tag">NIST CSF</span><span
+                            class="tag">OT/ICS</span><span class="tag">CMMC</span>
+                    </div>
+                </div>
 
                 <!-- Energy -->
-                <article id="energy" class="reveal img-float rounded-2xl border border-white/10 bg-ink p-6">
-                    <h3 class="text-xl font-semibold">Energy & Infrastructure</h3>
-                    <p class="mt-3 text-sm text-white/70">
-                        Critical infrastructure demands resilience and continuous protection.
+                <div class="ind-card reveal reveal-d4" id="energy">
+                    <div class="card-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.75"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                        </svg>
+                    </div>
+                    <h3 class="card-h3">Energy &amp; Infrastructure</h3>
+                    <p
+                        style="font-size:0.875rem;color:var(--muted);line-height:1.65;margin:0 0 1.25rem;font-weight:300;">
+                        Critical infrastructure requires the highest levels of resilience, regulatory alignment, and
+                        threat-informed defense.
                     </p>
-                    <ul class="mt-4 text-sm text-white/70 space-y-2">
-                        <li>• NERC-CIP and ISO-aligned controls</li>
-                        <li>• IT/OT monitoring and incident response</li>
-                        <li>• Backup, recovery, and continuity planning</li>
-                    </ul>
-                </article>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Optional: Logistics & Retail preview tiles (add ids if you link from footer later) -->
-    <section class="section-lg">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 class="reveal text-3xl font-bold">Also supporting</h2>
-            <div class="mt-8 grid gap-6 md:grid-cols-2">
-                <article id="logistics" class="reveal img-float rounded-2xl border border-white/10 bg-ink p-6">
-                    <h3 class="font-semibold">Logistics</h3>
-                    <p class="mt-3 text-sm text-white/70">Secure supply-chain data flows, EDI integrations, and
-                        real-time ops—without compromising availability.</p>
-                </article>
-                <article id="retail" class="reveal img-float rounded-2xl border border-white/10 bg-ink p-6">
-                    <h3 class="font-semibold">Consumer Products & Retail</h3>
-                    <p class="mt-3 text-sm text-white/70">Protect payment systems and customer PII while keeping
-                        checkout smooth and compliant.</p>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Band -->
-    <section class="band bg-white/5">
-        <div class="band-inner">
-            <div
-                class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-                <div class="reveal">
-                    <h3 class="text-2xl font-bold">Want a sector-specific action plan?</h3>
-                    <p class="mt-2 text-white/70">We’ll map your controls to the right standards and prioritize quick
-                        wins.</p>
-                </div>
-                <div class="reveal">
-                    <a href="contact.html"
-                        class="rounded-full bg-hawk-500 px-5 py-2.5 font-semibold shadow-glow hover:bg-hawk-600">Connect
-                        with Us</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="mt-12 border-t border-white/10">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid gap-10 md:grid-cols-5">
-                <div>
-                    <a href="index.html" class="flex items-center gap-2">
-                        <span class="text-lg font-semibold">Hawk Cybersecurity</span>
-                    </a>
-                    <p class="mt-4 text-sm text-white/60 max-w-xs">Practical security, clear outcomes, audit-ready
-                        evidence.</p>
-                    <a href="contact.html"
-                        class="mt-5 inline-block rounded-full bg-hawk-500 px-4 py-2 text-sm font-semibold shadow-glow hover:bg-hawk-600">
-                        Connect with Us
-                    </a>
-                </div>
-
-                <div>
-                    <h4 class="text-sm font-semibold text-white/80">Solutions</h4>
-                    <ul class="mt-3 space-y-2 text-sm text-white/70">
-                        <li><a class="hover:text-white" href="solutions.html">Compliance & Experience</a></li>
-                        <li><a class="hover:text-white" href="solutions.html#tech">Technology & Tools</a></li>
-                        <li><a class="hover:text-white" href="solutions.html#sdlc">Secure SDLC</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-sm font-semibold text-white/80">Industry</h4>
-                    <ul class="mt-3 space-y-2 text-sm text-white/70">
-                        <li><a class="hover:text-white" href="#government">Government & Public</a></li>
-                        <li><a class="hover:text-white" href="#finance">Financial Services</a></li>
-                        <li><a class="hover:text-white" href="#manufacturing">Manufacturing & OT</a></li>
-                        <li><a class="hover:text-white" href="#energy">Energy & Infrastructure</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-sm font-semibold text-white/80">Insight</h4>
-                    <ul class="mt-3 space-y-2 text-sm text-white/70">
-                        <li><a class="hover:text-white" href="insight.html#secure-sdlc">Secure SDLC</a></li>
-                        <li><a class="hover:text-white" href="insight.html#governance">AI Governance</a></li>
-                        <li><a class="hover:text-white" href="insight.html#threat">Threat Intelligence</a></li>
-                        <li><a class="hover:text-white" href="insight.html#partners">Partners</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-sm font-semibold text-white/80">Company</h4>
-                    <ul class="mt-3 space-y-2 text-sm text-white/70">
-                        <li><a class="hover:text-white" href="company.html#mission">Mission</a></li>
-                        <li><a class="hover:text-white" href="company.html#vision">Vision</a></li>
-                        <li><a class="hover:text-white" href="company.html#values">Values</a></li>
-                        <li><a class="hover:text-white" href="company.html#team">Team</a></li>
-                    </ul>
-                </div>
-
-                <div
-                    class="mt-10 border-t border-white/10 pt-6 text-sm text-white/60 flex flex-wrap items-center justify-between gap-4">
-                    <p>© <span id="y"></span> Hawk Cybersecurity. All rights reserved.</p>
-                    <div class="flex gap-4">
-                        <a href="#" class="hover:text-white">Privacy</a>
-                        <a href="#" class="hover:text-white">Terms</a>
-                        <a href="#" class="hover:text-white">Status</a>
+                    <div style="display:flex;flex-direction:column;gap:0;">
+                        <div class="check-item">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            NERC-CIP compliance and audit support
+                        </div>
+                        <div class="check-item">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            IT/OT monitoring and threat detection
+                        </div>
+                        <div class="check-item">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Backup, recovery, and continuity planning
+                        </div>
+                        <div class="check-item">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Physical and cyber convergence risk management
+                        </div>
+                    </div>
+                    <div
+                        style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:0.35rem;">
+                        <span class="tag">NERC-CIP</span><span class="tag">ISO 27001</span><span
+                            class="tag">CISA</span><span class="tag">ICS-CERT</span>
                     </div>
                 </div>
 
             </div>
+        </div>
+    </section>
+
+    <!-- ── ALSO SUPPORTING ────────────────────────── -->
+    <section class="section" style="background:var(--bg);position:relative;z-index:1;">
+        <div class="container">
+            <div class="reveal" style="max-width:560px;margin-bottom:2.5rem;">
+                <p class="eyebrow" style="margin-bottom:0.75rem;">Also Supporting</p>
+                <h2 style="font-size:1.75rem;font-weight:700;letter-spacing:-0.02em;line-height:1.2;">Additional
+                    sectors<br>we actively support.</h2>
+                <p style="margin-top:0.875rem;color:var(--muted);font-size:0.9rem;line-height:1.65;font-weight:300;">
+                    Beyond our core verticals, we bring the same practical approach to logistics, transportation, and
+                    consumer-facing businesses.
+                </p>
+            </div>
+
+            <div class="ind-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;">
+
+                <!-- Logistics -->
+                <div class="ind-card reveal reveal-d1" id="logistics">
+                    <div class="card-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.75"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="1" y="3" width="15" height="13" rx="1" />
+                            <path
+                                d="M16 8h4l3 3v5h-7V8zM5.5 21a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM18.5 21a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+                        </svg>
+                    </div>
+                    <h3 class="card-h3">Logistics &amp; Transportation</h3>
+                    <p
+                        style="font-size:0.875rem;color:var(--muted);line-height:1.65;margin:0 0 1.25rem;font-weight:300;">
+                        Secure supply-chain data flows, EDI integrations, and real-time operations without compromising
+                        availability or partner trust.
+                    </p>
+                    <div style="display:flex;flex-direction:column;gap:0;">
+                        <div class="check-item">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            EDI and API security for partner integrations
+                        </div>
+                        <div class="check-item">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Fleet and telemetry data protection
+                        </div>
+                        <div class="check-item">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Ransomware resilience and operational continuity
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Retail -->
+                <div class="ind-card reveal reveal-d2" id="retail">
+                    <div class="card-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.75"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18" />
+                            <path d="M16 10a4 4 0 01-8 0" />
+                        </svg>
+                    </div>
+                    <h3 class="card-h3">Consumer Products &amp; Retail</h3>
+                    <p
+                        style="font-size:0.875rem;color:var(--muted);line-height:1.65;margin:0 0 1.25rem;font-weight:300;">
+                        Protect payment systems and customer PII while keeping checkout smooth, brand reputation intact,
+                        and compliance current.
+                    </p>
+                    <div style="display:flex;flex-direction:column;gap:0;">
+                        <div class="check-item">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            PCI DSS scoping and cardholder data protection
+                        </div>
+                        <div class="check-item">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            Customer data privacy and GDPR/CCPA compliance
+                        </div>
+                        <div class="check-item">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8l3.5 3.5L13 4" stroke="#60A5FA" stroke-width="1.75" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            E-commerce application and API security
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── APPROACH ROW ───────────────────────────── -->
+    <section class="section-sm"
+        style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;z-index:1;">
+        <div class="container">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;" class="approach-grid">
+                <div class="reveal">
+                    <div
+                        style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.75rem;">
+                        Our Approach</div>
+                    <div style="font-size:1.05rem;font-weight:600;letter-spacing:-0.01em;margin-bottom:0.5rem;">
+                        Threat-informed, not template-driven.</div>
+                    <p style="font-size:0.875rem;color:var(--muted);line-height:1.65;font-weight:300;">We start with
+                        your threat model, then map controls to what actually matters.</p>
+                </div>
+                <div class="reveal reveal-d1">
+                    <div
+                        style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.75rem;">
+                        Delivery</div>
+                    <div style="font-size:1.05rem;font-weight:600;letter-spacing:-0.01em;margin-bottom:0.5rem;">Embedded
+                        alongside your team.</div>
+                    <p style="font-size:0.875rem;color:var(--muted);line-height:1.65;font-weight:300;">We work with your
+                        people — not around them — to build programs that stick.</p>
+                </div>
+                <div class="reveal reveal-d2">
+                    <div
+                        style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.75rem;">
+                        Evidence</div>
+                    <div style="font-size:1.05rem;font-weight:600;letter-spacing:-0.01em;margin-bottom:0.5rem;">
+                        Audit-ready documentation.</div>
+                    <p style="font-size:0.875rem;color:var(--muted);line-height:1.65;font-weight:300;">Every engagement
+                        produces controls evidence that holds up under scrutiny.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        @media (max-width: 768px) {
+            .approach-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.75rem !important;
+            }
+        }
+    </style>
+
+    <!-- ── CTA BANNER ─────────────────────────────── -->
+    <section class="section" style="background:var(--bg);position:relative;z-index:1;overflow:hidden;">
+        <div
+            style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(59,130,246,0.07) 0%,transparent 70%);pointer-events:none;z-index:0;">
+        </div>
+        <div class="reveal"
+            style="position:relative;z-index:1;max-width:640px;margin:0 auto;padding:0 1.5rem;text-align:center;">
+            <h2 class="section-h2" style="margin-bottom:1rem;">
+                Want a sector-specific<br>action plan?
+            </h2>
+            <p style="color:var(--muted);font-size:0.95rem;line-height:1.7;font-weight:300;margin-bottom:2rem;">
+                We'll map your controls to the right standards, prioritize quick wins, and give you a roadmap that
+                auditors and executives can both follow.
+            </p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
+                <a href="contact.html" class="btn-primary" style="font-size:0.95rem;padding:0.75rem 1.75rem;">Connect
+                    with Us →</a>
+                <a href="solutions.html" class="btn-ghost" style="font-size:0.95rem;padding:0.75rem 1.75rem;">View
+                    Solutions</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FOOTER ─────────────────────────────────── -->
+    <footer style="border-top:1px solid var(--border);background:var(--surface);position:relative;z-index:1;">
+        <div style="max-width:1200px;margin:0 auto;padding:3.5rem 1.5rem 2rem;">
+            <div class="footer-grid" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:2rem;">
+
+                <div>
+                    <a href="index.html"
+                        style="display:inline-flex;align-items:center;gap:0.625rem;text-decoration:none;margin-bottom:1rem;">
+                        <svg width="24" height="24" viewBox="0 0 26 26" fill="none">
+                            <rect width="26" height="26" rx="6" fill="rgba(59,130,246,0.15)"
+                                stroke="rgba(59,130,246,0.35)" stroke-width="1" />
+                            <path d="M7 18L13 7L19 18H15.5L13 13.5L10.5 18H7Z" fill="#60A5FA" />
+                        </svg>
+                        <span style="font-weight:600;font-size:0.9rem;color:var(--text);">Hawk Cybersecurity</span>
+                    </a>
+                    <p
+                        style="font-size:0.82rem;color:rgba(250,250,250,0.4);line-height:1.65;max-width:220px;font-weight:300;">
+                        Practical security, clear outcomes, audit-ready evidence.</p>
+                    <a href="contact.html" class="btn-primary"
+                        style="margin-top:1.25rem;font-size:0.82rem;padding:0.5rem 1rem;">Connect with Us</a>
+                </div>
+
+                <div>
+                    <h4
+                        style="font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(250,250,250,0.35);margin:0 0 0.875rem;font-family:'DM Mono',monospace;">
+                        Solutions</h4>
+                    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
+                        <li><a href="solutions.html">Compliance &amp; Experience</a></li>
+                        <li><a href="solutions.html#tech">Technology &amp; Tools</a></li>
+                        <li><a href="solutions.html#sdlc">Secure SDLC</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4
+                        style="font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(250,250,250,0.35);margin:0 0 0.875rem;font-family:'DM Mono',monospace;">
+                        Industry</h4>
+                    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
+                        <li><a href="#government">Government &amp; Public</a></li>
+                        <li><a href="#finance">Financial Services</a></li>
+                        <li><a href="#manufacturing">Manufacturing &amp; OT</a></li>
+                        <li><a href="#energy">Energy &amp; Infrastructure</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4
+                        style="font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(250,250,250,0.35);margin:0 0 0.875rem;font-family:'DM Mono',monospace;">
+                        Insight</h4>
+                    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
+                        <li><a href="insight.html#secure-sdlc">Secure SDLC</a></li>
+                        <li><a href="insight.html#governance">AI Governance</a></li>
+                        <li><a href="insight.html#threat">Threat Intelligence</a></li>
+                        <li><a href="insight.html#partners">Partners</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4
+                        style="font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(250,250,250,0.35);margin:0 0 0.875rem;font-family:'DM Mono',monospace;">
+                        Company</h4>
+                    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
+                        <li><a href="company.html#mission">Mission</a></li>
+                        <li><a href="company.html#vision">Vision</a></li>
+                        <li><a href="company.html#values">Values</a></li>
+                        <li><a href="company.html#team">Team</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div
+                style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;">
+                <p style="font-size:0.78rem;color:rgba(250,250,250,0.3);margin:0;">© <span id="y"></span> Hawk
+                    Cybersecurity. All rights reserved.</p>
+                <div style="display:flex;gap:1.25rem;">
+                    <a href="#" style="font-size:0.78rem;">Privacy</a>
+                    <a href="#" style="font-size:0.78rem;">Terms</a>
+                    <a href="#" style="font-size:0.78rem;">Status</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- ── SCRIPTS ────────────────────────────────── -->
     <script>
-        // Year in footer
-        const yEl = document.getElementById('y');
-        if (yEl) yEl.textContent = new Date().getFullYear();
+        const y = document.getElementById('y');
+        if (y) y.textContent = new Date().getFullYear();
 
-        // Mobile nav toggle
-        const navToggle = document.getElementById('navToggle');
-        const mobileNav = document.getElementById('mobileNav');
-        navToggle?.addEventListener('click', () => {
-            const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-            navToggle.setAttribute('aria-expanded', String(!expanded));
-            mobileNav.classList.toggle('hidden');
+        const toggle = document.getElementById('navToggle');
+        const mNav = document.getElementById('mobileNav');
+        toggle?.addEventListener('click', () => {
+            const open = mNav.style.display === 'flex';
+            mNav.style.display = open ? 'none' : 'flex';
+            toggle.setAttribute('aria-expanded', String(!open));
         });
 
-        // Reveal-on-scroll
         (function () {
             const els = document.querySelectorAll('.reveal');
-            if (!('IntersectionObserver' in window) || !els.length) return els.forEach(el => el.classList.add('is-in'));
-            const io = new IntersectionObserver((entries) => {
+            if (!('IntersectionObserver' in window)) { els.forEach(el => el.classList.add('is-in')); return; }
+            const io = new IntersectionObserver(entries => {
                 entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
-            }, { threshold: 0.15 });
+            }, { threshold: 0.12 });
             els.forEach(el => io.observe(el));
         })();
     </script>
